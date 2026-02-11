@@ -3,13 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Trendz Closet - Designer Pakistani & Indian Fashion in New York. Budget-friendly luxury wear, bridal collections, and exclusive designer outfits.">
-    <meta name="keywords" content="Pakistani fashion, Indian fashion, designer wear, bridal wear, New York, Jamaica NY, South Asian fashion">
-    <meta property="og:title" content="Trendz Closet - Designer Pakistani & Indian Fashion">
-    <meta property="og:description" content="Your destination for authentic Pakistani and Indian designer fashion in New York">
-    <meta property="og:image" content="images/logo.jpg">
-    <title>Trendz Closet | Designer Pakistani & Indian Fashion | New York</title>
-    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <title>Trendz Closet | Designer Pakistani & Indian Fashion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -42,7 +36,28 @@
             overflow-x: hidden;
         }
         
-        /* Floating WhatsApp & Messenger Buttons */
+        /* Loading Spinner */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--gold-light);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Floating Buttons */
         .floating-buttons {
             position: fixed;
             bottom: 30px;
@@ -74,7 +89,7 @@
         }
         
         .messenger-btn {
-            background: linear-gradient(135deg, #006AFF, #00C6FF);
+            background: linear-gradient(135deg, #006AFF 0%, #00C6FF 100%);
         }
         
         .float-btn svg {
@@ -94,25 +109,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
-            transition: all 0.4s ease;
-        }
-        
-        nav.scrolled {
             background: rgba(74, 26, 38, 0.98);
-            padding: 0.8rem 5%;
             box-shadow: 0 4px 30px rgba(74, 26, 38, 0.4);
         }
         
         .nav-logo {
-            height: 60px;
+            height: 50px;
             border-radius: 50%;
             border: 2px solid var(--gold);
-            transition: all 0.3s ease;
-        }
-        
-        nav.scrolled .nav-logo {
-            height: 50px;
         }
         
         .nav-links {
@@ -129,51 +133,49 @@
             text-transform: uppercase;
             font-weight: 500;
             transition: all 0.3s ease;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         .nav-links a:hover {
             color: var(--gold);
         }
         
-        .mobile-menu-btn {
+        .mobile-menu {
             display: none;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
-            padding: 10px;
         }
         
-        .mobile-menu-btn span {
+        .mobile-menu span {
             width: 25px;
-            height: 2px;
+            height: 3px;
             background: var(--gold);
-            transition: all 0.3s ease;
         }
         
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 70vh;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            background: var(--burgundy-dark);
+            margin-top: 70px;
         }
         
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: url('images/bridal-gold.jpg') center center / cover no-repeat;
+            background: url('images/logo.jpg') center center / cover no-repeat;
+            opacity: 0.2;
         }
         
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(180deg, 
-                rgba(74, 26, 38, 0.85) 0%, 
-                rgba(107, 39, 55, 0.7) 50%,
-                rgba(74, 26, 38, 0.9) 100%);
+                rgba(74, 26, 38, 0.9) 0%, 
+                rgba(107, 39, 55, 0.85) 100%);
         }
         
         .hero-content {
@@ -186,36 +188,34 @@
         
         .hero-logo {
             width: 180px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             border-radius: 50%;
             border: 4px solid var(--gold);
             box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
-            animation: glow 3s ease-in-out infinite;
+            animation: glow 2s ease-in-out infinite alternate;
         }
         
         @keyframes glow {
-            0%, 100% { box-shadow: 0 0 50px rgba(212, 175, 55, 0.4); }
-            50% { box-shadow: 0 0 80px rgba(212, 175, 55, 0.6); }
+            from { box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+            to { box-shadow: 0 0 60px rgba(212, 175, 55, 0.6); }
         }
         
         .hero-content h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 6vw, 4rem);
+            font-size: 3.5rem;
             font-weight: 600;
-            letter-spacing: 6px;
-            margin-bottom: 1rem;
+            letter-spacing: 8px;
+            margin-bottom: 0.5rem;
             color: var(--gold);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
         
         .hero-content .tagline {
-            font-size: 1rem;
-            letter-spacing: 5px;
+            font-size: 1.1rem;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            margin-bottom: 2rem;
             color: var(--gold-light);
-            animation: fadeInUp 1s ease 0.6s both;
+            margin-bottom: 2rem;
         }
         
         .hero-buttons {
@@ -223,20 +223,19 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.9s both;
         }
         
         .hero-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             text-decoration: none;
+            font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .hero-btn.primary {
@@ -264,14 +263,10 @@
         .hero-btn svg {
             width: 20px;
             height: 20px;
+            fill: currentColor;
         }
         
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Decorative Divider */
+        /* Divider */
         .divider {
             display: flex;
             align-items: center;
@@ -293,66 +288,50 @@
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
         
-        /* Section Headers */
+        /* Section Styles */
+        .section {
+            padding: 4rem 5%;
+        }
+        
+        .section.burgundy {
+            background: var(--burgundy);
+        }
+        
+        .section.cream {
+            background: var(--cream);
+        }
+        
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
         }
         
-        .section-header h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--burgundy);
-        }
-        
-        .section-header p {
+        .section-header .subtitle {
             color: var(--gold);
             letter-spacing: 4px;
             text-transform: uppercase;
             font-size: 0.85rem;
             font-weight: 600;
+            margin-bottom: 0.5rem;
         }
         
-        /* About Section */
-        .about {
-            padding: 5rem 5%;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .about-content p {
-            line-height: 2;
-            color: #555;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .about-content .signature {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            color: var(--gold);
-            margin-top: 2rem;
-            letter-spacing: 2px;
-        }
-        
-        /* Collections Section */
-        .collections {
-            padding: 5rem 5%;
-            background: var(--burgundy);
-        }
-        
-        .collections .section-header h2 {
-            color: var(--gold);
-        }
-        
-        .collections .section-header p {
+        .section.burgundy .section-header .subtitle {
             color: var(--gold-light);
         }
         
-        .collection-grid {
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--burgundy);
+        }
+        
+        .section.burgundy .section-header h2 {
+            color: var(--gold);
+        }
+        
+        /* Product Grid */
+        .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
@@ -360,29 +339,40 @@
             margin: 0 auto;
         }
         
-        .collection-item {
+        .product-grid.three-col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .product-card {
             position: relative;
             overflow: hidden;
             cursor: pointer;
             aspect-ratio: 3/4;
             border: 3px solid var(--gold);
+            transition: all 0.3s ease;
+            background: var(--burgundy-light);
         }
         
-        .collection-item img {
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .product-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
         }
         
-        .collection-item:hover img {
+        .product-card:hover img {
             transform: scale(1.1);
         }
         
-        .collection-overlay {
+        .product-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(74, 26, 38, 0.95) 100%);
+            background: linear-gradient(180deg, transparent 30%, rgba(74, 26, 38, 0.95) 100%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -391,74 +381,100 @@
             transition: opacity 0.4s ease;
         }
         
-        .collection-item:hover .collection-overlay {
+        .product-card:hover .product-overlay {
             opacity: 1;
         }
         
-        .collection-overlay h3 {
+        .product-overlay .price {
             font-family: 'Cinzel', serif;
             color: var(--gold);
-            font-size: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
         }
         
-        .collection-overlay span {
+        .product-overlay .description {
             color: var(--gold-light);
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .product-overlay .sizes {
+            color: white;
             font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
         }
         
-        /* Featured Section */
-        .featured {
-            padding: 5rem 5%;
-            background: var(--cream);
+        .product-overlay .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.8rem 1.2rem;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
         
+        .product-overlay .whatsapp-link:hover {
+            background: #128C7E;
+        }
+        
+        .product-overlay .whatsapp-link svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+        
+        /* Featured Section (3 columns) */
         .featured-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
         
-        .featured-item {
+        .featured-card {
             position: relative;
             overflow: hidden;
-            border: 3px solid var(--gold);
             aspect-ratio: 3/4;
+            border: 4px solid var(--gold);
+            transition: all 0.3s ease;
         }
         
-        .featured-item.large {
-            grid-column: span 1;
-            grid-row: span 2;
-            aspect-ratio: auto;
+        .featured-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
         }
         
-        .featured-item img {
+        .featured-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
         
-        .featured-item:hover img {
-            transform: scale(1.05);
+        .featured-card:hover img {
+            transform: scale(1.08);
         }
         
-        /* More Collection Grid */
-        .more-collection {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+        .featured-card .product-overlay {
+            padding: 2rem;
         }
         
-        .more-collection .section-header h2 {
-            color: var(--gold);
+        .featured-card .price {
+            font-size: 1.8rem;
         }
         
-        .more-collection .section-header p {
-            color: var(--gold-light);
-        }
-        
-        .more-grid {
+        /* Album Grid (Latest Arrivals) */
+        .album-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
@@ -466,228 +482,171 @@
             margin: 0 auto;
         }
         
-        .more-item {
+        .album-card {
             position: relative;
             overflow: hidden;
+            aspect-ratio: 1;
             border: 3px solid var(--gold);
-            aspect-ratio: 3/4;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         
-        .more-item img {
+        .album-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .album-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
         
-        .more-item:hover img {
-            transform: scale(1.08);
+        .album-card:hover img {
+            transform: scale(1.1);
         }
         
-        /* Services Section */
-        .services {
-            padding: 5rem 5%;
-            background: var(--ivory);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .service-card {
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            background: white;
-            border: 2px solid var(--gold);
-            transition: all 0.4s ease;
-        }
-        
-        .service-card:hover {
-            background: var(--burgundy);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(107, 39, 55, 0.2);
-        }
-        
-        .service-card:hover h3,
-        .service-card:hover p {
-            color: white;
-        }
-        
-        .service-card:hover .service-icon {
-            background: var(--gold);
-        }
-        
-        .service-card:hover .service-icon svg {
-            stroke: var(--burgundy);
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 1.5rem;
-            background: var(--burgundy);
+        .album-card .album-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(74, 26, 38, 0.95) 100%);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
         }
         
-        .service-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--gold);
-            fill: none;
-            transition: all 0.4s ease;
-        }
-        
-        .service-card h3 {
+        .album-card .album-name {
             font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--burgundy);
-            transition: color 0.4s ease;
-        }
-        
-        .service-card p {
-            color: #666;
-            line-height: 1.7;
-            font-size: 0.95rem;
-            transition: color 0.4s ease;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 5rem 5%;
-            background: var(--burgundy-dark);
-            color: white;
-        }
-        
-        .contact-wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-        
-        .contact-info h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
             color: var(--gold);
-        }
-        
-        .contact-detail {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--gold);
-        }
-        
-        .contact-detail h4 {
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             margin-bottom: 0.3rem;
         }
         
-        .contact-detail p {
-            line-height: 1.7;
+        .album-card .album-count {
             color: var(--gold-light);
+            font-size: 0.8rem;
         }
         
-        .contact-detail a {
-            color: var(--gold-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        /* About Section */
+        .about-section {
+            padding: 4rem 5%;
+            background: var(--cream);
         }
         
-        .contact-detail a:hover {
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 5%;
+            background: var(--burgundy-dark);
+        }
+        
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
             color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-content p {
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-content .address {
+            color: white;
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+            line-height: 1.8;
         }
         
         .contact-buttons {
             display: flex;
-            flex-direction: column;
             gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
             margin-top: 2rem;
         }
         
         .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
             padding: 1rem 2rem;
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             transition: all 0.3s ease;
+            border: 2px solid;
         }
         
         .contact-btn.whatsapp {
             background: #25D366;
+            border-color: #25D366;
             color: white;
         }
         
         .contact-btn.whatsapp:hover {
-            background: #128C7E;
-        }
-        
-        .contact-btn.messenger {
-            background: #006AFF;
-            color: white;
-        }
-        
-        .contact-btn.messenger:hover {
-            background: #0051c7;
-        }
-        
-        .contact-btn.facebook {
             background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
         }
         
-        .contact-btn.facebook:hover {
+        .contact-btn.phone {
             background: var(--gold);
+            border-color: var(--gold);
             color: var(--burgundy-dark);
         }
         
+        .contact-btn.phone:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+        
         .contact-btn svg {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             fill: currentColor;
-        }
-        
-        .contact-map {
-            border: 3px solid var(--gold);
-            height: 100%;
-            min-height: 350px;
-        }
-        
-        .contact-map iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
         }
         
         /* Footer */
         footer {
-            background: #2a1218;
-            padding: 2.5rem 5%;
+            background: #1a0d10;
+            padding: 2rem 5%;
             text-align: center;
             border-top: 3px solid var(--gold);
         }
         
         footer img {
-            width: 80px;
+            width: 70px;
             border-radius: 50%;
             border: 2px solid var(--gold);
             margin-bottom: 1rem;
@@ -698,439 +657,428 @@
             font-size: 0.85rem;
         }
         
-        footer .footer-tagline {
+        footer .tagline {
             color: var(--gold);
             font-family: 'Cinzel', serif;
             margin-bottom: 0.5rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
         
-        /* Mobile Responsive */
+        /* Album Page Styles */
+        .album-page {
+            display: none;
+            padding-top: 90px;
+            min-height: 100vh;
+        }
+        
+        .album-page.active {
+            display: block;
+        }
+        
+        .album-page-header {
+            background: var(--burgundy);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .album-page-header h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .album-page-header p {
+            color: var(--gold-light);
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            color: var(--gold-light);
+        }
+        
+        .album-page-content {
+            padding: 3rem 5%;
+            background: var(--cream);
+        }
+        
+        /* Responsive */
         @media (max-width: 1024px) {
-            .collection-grid,
-            .more-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .product-grid, .album-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
             
             .featured-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .featured-item.large {
-                grid-row: span 1;
-                aspect-ratio: 3/4;
-            }
-        }
-        
-        @media (max-width: 900px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-            
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-map {
-                min-height: 300px;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
         
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--burgundy-dark);
-                flex-direction: column;
-                padding: 1rem;
-                gap: 0;
             }
             
-            .nav-links.active {
+            .mobile-menu {
                 display: flex;
             }
             
-            .nav-links li {
-                padding: 1rem;
-                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            .product-grid, .album-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
             
-            .mobile-menu-btn {
-                display: flex;
+            .featured-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
             }
             
             .hero-content h1 {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+            
+            .hero-content .tagline {
+                font-size: 0.8rem;
                 letter-spacing: 3px;
             }
             
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .product-overlay {
+                opacity: 1;
+                background: linear-gradient(180deg, transparent 50%, rgba(74, 26, 38, 0.95) 100%);
+            }
+        }
+        
+        @media (max-width: 500px) {
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .hero-btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
+            .contact-buttons {
+                flex-direction: column;
             }
-            
-            .collection-grid,
-            .more-grid,
-            .featured-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-            
-            .floating-buttons {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .float-btn {
-                width: 55px;
-                height: 55px;
-            }
-        }
-        
-        @media (max-width: 500px) {
-            .collection-grid,
-            .more-grid,
-            .featured-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Floating WhatsApp & Messenger Buttons -->
+    <!-- Floating Buttons -->
     <div class="floating-buttons">
         <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="float-btn whatsapp-btn" target="_blank" title="Chat on WhatsApp">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </a>
         <a href="https://m.me/trendzclosetny" class="float-btn messenger-btn" target="_blank" title="Chat on Messenger">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.301 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.301 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
         </a>
     </div>
 
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav>
         <img src="images/logo.jpg" alt="Trendz Closet" class="nav-logo">
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
+        <ul class="nav-links">
+            <li><a href="#home" onclick="showHome()">Home</a></li>
             <li><a href="#collections">Collections</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="mobile-menu-btn" id="mobileMenuBtn">
+        <div class="mobile-menu">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <img src="images/logo.jpg" alt="Trendz Closet Logo" class="hero-logo">
-            <h1>Trendz Closet</h1>
-            <p class="tagline">Designer Pakistani & Indian Fashion</p>
-            <div class="hero-buttons">
-                <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="hero-btn primary" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    WhatsApp Us
-                </a>
-                <a href="#collections" class="hero-btn secondary">
-                    View Collection
-                </a>
+    <!-- Main Home Page -->
+    <main id="homePage">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <img src="images/logo.jpg" alt="Trendz Closet Logo" class="hero-logo">
+                <h1>Trendz Closet</h1>
+                <p class="tagline">Designer Pakistani & Indian Fashion</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="hero-btn primary" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                        WhatsApp Us
+                    </a>
+                    <a href="#collections" class="hero-btn secondary">View Collection</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="divider"><span>✦</span></div>
+        <div class="divider"><span>✦</span></div>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="section-header reveal">
-            <p>Welcome To</p>
-            <h2>Trendz Closet</h2>
-        </div>
-        <div class="about-content reveal">
-            <p>Your premier destination for authentic Pakistani and Indian designer fashion in New York. We bring you the finest handcrafted embroidered outfits, luxurious velvet ensembles, and exclusive designer collections at budget-friendly prices.</p>
-            <p>From stunning bridal wear to elegant everyday fashion, our carefully curated collection features original Pakistani Karma Collection, Masori fabric handmade embroidered pieces, and much more. Each piece is selected to bring you the perfect blend of traditional craftsmanship and contemporary style.</p>
-            <p>Available in sizes Small, Medium, Large, and XL. Pre-orders welcome for exclusive collections.</p>
-            <p class="signature">✦ Dress Like Royalty ✦</p>
-        </div>
-    </section>
+        <!-- Our Exclusive Collection Section -->
+        <section class="section burgundy" id="collections">
+            <div class="section-header">
+                <p class="subtitle">Curated For You</p>
+                <h2>Our Exclusive Collection</h2>
+            </div>
+            <div class="product-grid" id="exclusiveCollection">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </section>
 
-    <!-- Collections Section -->
-    <section class="collections" id="collections">
-        <div class="section-header reveal">
-            <p>Our Exclusive</p>
-            <h2>Collections</h2>
-        </div>
-        <div class="collection-grid">
-            <div class="collection-item reveal">
-                <img src="images/bridal-gold.jpg" alt="Bridal Collection">
-                <div class="collection-overlay">
-                    <h3>Bridal Collection</h3>
-                    <span>Elegant Dreams</span>
-                </div>
+        <!-- Featured Pieces Section -->
+        <section class="section cream">
+            <div class="section-header">
+                <p class="subtitle">Handpicked For You</p>
+                <h2>Featured Pieces</h2>
             </div>
-            <div class="collection-item reveal">
-                <img src="images/purple-magenta.jpg" alt="Party Wear">
-                <div class="collection-overlay">
-                    <h3>Party Wear</h3>
-                    <span>S M L XL Available</span>
-                </div>
+            <div class="featured-grid" id="featuredPieces">
+                <div class="loading"><div class="spinner"></div></div>
             </div>
-            <div class="collection-item reveal">
-                <img src="images/turquoise-silver.jpg" alt="Embroidered Collection">
-                <div class="collection-overlay">
-                    <h3>Embroidered Suits</h3>
-                    <span>Handcrafted Beauty</span>
-                </div>
-            </div>
-            <div class="collection-item reveal">
-                <img src="images/burgundy-velvet.jpg" alt="Velvet Collection">
-                <div class="collection-overlay">
-                    <h3>Velvet Collection</h3>
-                    <span>Winter Luxe</span>
-                </div>
-            </div>
-            <div class="collection-item reveal">
-                <img src="images/yellow-maroon.jpg" alt="Festive Wear">
-                <div class="collection-overlay">
-                    <h3>Festive Wear</h3>
-                    <span>Celebration Ready</span>
-                </div>
-            </div>
-            <div class="collection-item reveal">
-                <img src="images/royal-blue.jpg" alt="Royal Collection">
-                <div class="collection-overlay">
-                    <h3>Royal Blue</h3>
-                    <span>Regal Elegance</span>
-                </div>
-            </div>
-            <div class="collection-item reveal">
-                <img src="images/beige-green.jpg" alt="Designer Suits">
-                <div class="collection-overlay">
-                    <h3>Designer Suits</h3>
-                    <span>Statement Pieces</span>
-                </div>
-            </div>
-            <div class="collection-item reveal">
-                <img src="images/pink-embroidered.jpg" alt="Pink Collection">
-                <div class="collection-overlay">
-                    <h3>Pink Dreams</h3>
-                    <span>Soft & Elegant</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="divider"><span>✦</span></div>
+        <!-- Latest Arrivals (Album Links) -->
+        <section class="section burgundy">
+            <div class="section-header">
+                <p class="subtitle">Explore More</p>
+                <h2>Latest Arrivals</h2>
+            </div>
+            <div class="album-grid" id="latestArrivals">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </section>
 
-    <!-- Featured Section -->
-    <section class="featured">
-        <div class="section-header reveal">
-            <p>Handpicked For You</p>
-            <h2>Featured Pieces</h2>
-        </div>
-        <div class="featured-grid">
-            <div class="featured-item large reveal">
-                <img src="images/teal-orange.jpg" alt="Featured Piece">
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <h2>About Trendz Closet</h2>
+                <p>Welcome to Trendz Closet, your premier destination for authentic Pakistani and Indian fashion in New York. We bring the finest designer collections directly to you, featuring exquisite craftsmanship, luxurious fabrics, and timeless designs.</p>
+                <p>From elegant everyday wear to stunning bridal collections, our carefully curated selection ensures you find the perfect outfit for every occasion. Each piece is handpicked for quality and style.</p>
+                <p>Visit us in Jamaica, NY or browse our collection online. We offer personalized styling consultations and ship across the United States.</p>
             </div>
-            <div class="featured-item reveal">
-                <img src="images/grey-pink-floral.jpg" alt="Grey Pink Floral">
-            </div>
-            <div class="featured-item reveal">
-                <img src="images/ombre-gold.jpg" alt="Ombre Gold">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- More Collection -->
-    <section class="more-collection">
-        <div class="section-header reveal">
-            <p>Explore More</p>
-            <h2>Latest Arrivals</h2>
-        </div>
-        <div class="more-grid">
-            <div class="more-item reveal">
-                <img src="images/navy-silver.jpg" alt="Navy Silver">
-            </div>
-            <div class="more-item reveal">
-                <img src="images/rust-orange.jpg" alt="Rust Orange">
-            </div>
-            <div class="more-item reveal">
-                <img src="images/navy-gold.jpg" alt="Navy Gold">
-            </div>
-            <div class="more-item reveal">
-                <img src="images/olive-festive.jpg" alt="Olive Festive">
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"><span>✦</span></div>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="section-header reveal">
-            <p>Why Choose Us</p>
-            <h2>Our Services</h2>
-        </div>
-        <div class="services-grid">
-            <div class="service-card reveal">
-                <div class="service-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                    </svg>
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="contact-content">
+                <h2>Visit Us</h2>
+                <p>Open Daily by Appointment</p>
+                <div class="address">
+                    17007 118th Ave<br>
+                    Jamaica, NY 11434<br>
+                    United States
                 </div>
-                <h3>Pre-Order Service</h3>
-                <p>Reserve exclusive pieces from Pakistan's top designers. Get first access to new arrivals.</p>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                </div>
-                <h3>Visit Our Store</h3>
-                <p>Experience our collection in person at our Jamaica, NY location. Styling assistance available.</p>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
-                </div>
-                <h3>All Sizes Available</h3>
-                <p>From S to XL, every woman deserves to feel beautiful. Custom sizing available.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-wrapper">
-            <div class="contact-info reveal">
-                <h2>Get In Touch</h2>
-                <div class="contact-detail">
-                    <h4>Address</h4>
-                    <p>17007 118th Ave<br>Jamaica, New York, NY 11434</p>
-                </div>
-                <div class="contact-detail">
-                    <h4>Phone</h4>
-                    <p><a href="tel:+16464097127">+1 (646) 409-7127</a></p>
-                </div>
-                <div class="contact-detail">
-                    <h4>Hours</h4>
-                    <p>Open Daily by Appointment</p>
-                </div>
-                <div class="contact-detail">
-                    <h4>We Serve</h4>
-                    <p>New York • Manhattan • New Jersey</p>
-                </div>
-                
                 <div class="contact-buttons">
-                    <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="contact-btn whatsapp" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Chat on WhatsApp
+                    <a href="https://wa.me/16464097127?text=Hi! I'd like to schedule an appointment" class="contact-btn whatsapp" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                        WhatsApp
                     </a>
-                    <a href="https://m.me/trendzclosetny" class="contact-btn messenger" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.301 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
-                        Chat on Messenger
-                    </a>
-                    <a href="https://www.facebook.com/trendzclosetny" class="contact-btn facebook" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                        Follow on Facebook
+                    <a href="tel:+16464097127" class="contact-btn phone">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        Call Us
                     </a>
                 </div>
             </div>
-            <div class="contact-map reveal">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.4!2d-73.78!3d40.69!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQxJzI0LjAiTiA3M8KwNDYnNDguMCJX!5e0!3m2!1sen!2sus!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <img src="images/logo.jpg" alt="Trendz Closet">
+            <p class="tagline">✦ Dress Like Royalty ✦</p>
+            <p>© 2025 Trendz Closet. All Rights Reserved.</p>
+        </footer>
+    </main>
+
+    <!-- Album Detail Page (Hidden by default) -->
+    <div class="album-page" id="albumPage">
+        <div class="album-page-header">
+            <a href="#" class="back-btn" onclick="showHome(); return false;">← Back to Collections</a>
+            <h1 id="albumPageTitle">Album Name</h1>
+            <p id="albumPageCount">0 Items</p>
+        </div>
+        <div class="album-page-content">
+            <div class="product-grid" id="albumPageProducts">
+                <div class="loading"><div class="spinner"></div></div>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <img src="images/logo.jpg" alt="Trendz Closet Logo">
-        <p class="footer-tagline">✦ Dress Like Royalty ✦</p>
-        <p>© 2025 Trendz Closet. All Rights Reserved.</p>
-    </footer>
+    </div>
 
     <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+        // Facebook API Configuration
+        const CONFIG = {
+            accessToken: 'EAAMmIb1yWV8BQnGsH2HLxjZBKewzMXgvosJM1MZAoxckhDuUF9YvTt9wtMxJZBPDrpSDJ5ekDC4yPO17pse4FfuOHDxSENTYKgON1girQE3UGnKN7BSoZCb3zOLX0w5zMafnSRUnceZCIwNNq9EQMjQT5zbdqAuVYNxA20FP6zZBMs7Sk9jUXcSWPKrW5c17Dnq1cDHTy0NvBOf3SZA7YDzd4ZCPulZCPQJDJVkiQe9YYRN0ZD',
+            pageId: '373134302848785',
+            whatsappNumber: '16464097127',
+            albums: {
+                exclusive: '1520260263436089',
+                featured: '1520260906769358',
+                latestArrivals: [
+                    { id: '1520262290102553', name: 'Album Test 1' },
+                    { id: '1520263293435786', name: 'Album Test 2' }
+                ]
+            }
+        };
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Reveal on scroll animation
-        const reveals = document.querySelectorAll('.reveal');
-        
-        function revealOnScroll() {
-            reveals.forEach(el => {
-                const elementTop = el.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add('active');
-                }
-            });
+        // Parse price and details from caption
+        function parseCaption(caption) {
+            if (!caption) return { price: 'Contact for Price', description: '', sizes: '' };
+            
+            const priceMatch = caption.match(/\$[\d,.]+/);
+            const price = priceMatch ? priceMatch[0] : 'Contact for Price';
+            
+            // Extract sizes (S, M, L, XL patterns)
+            const sizeMatch = caption.match(/[SMLX]{1,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}/gi);
+            const sizes = sizeMatch ? sizeMatch[0].trim() : '';
+            
+            // Get description (remove price and sizes)
+            let description = caption
+                .replace(/\$[\d,.]+/, '')
+                .replace(/[SMLX]{1,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}/gi, '')
+                .replace(/^[\s\-–—]+|[\s\-–—]+$/g, '')
+                .trim();
+            
+            // Limit description length
+            if (description.length > 50) {
+                description = description.substring(0, 50) + '...';
+            }
+            
+            return { price, description, sizes };
         }
-        
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+        // Create WhatsApp link
+        function createWhatsAppLink(productName, price) {
+            const message = encodeURIComponent(`Hi! I'm interested in this item: ${productName} (${price}). Please share more details!`);
+            return `https://wa.me/${CONFIG.whatsappNumber}?text=${message}`;
+        }
+
+        // Create product card HTML
+        function createProductCard(photo, isLarge = false) {
+            const { price, description, sizes } = parseCaption(photo.name);
+            const imageUrl = photo.source || (photo.images && photo.images[0] ? photo.images[0].source : '');
+            const whatsappLink = createWhatsAppLink(description || 'this product', price);
+            
+            return `
+                <div class="product-card ${isLarge ? 'featured-card' : ''}">
+                    <img src="${imageUrl}" alt="${description}" loading="lazy">
+                    <div class="product-overlay">
+                        <div class="price">${price}</div>
+                        ${description ? `<div class="description">${description}</div>` : ''}
+                        ${sizes ? `<div class="sizes">${sizes}</div>` : ''}
+                        <a href="${whatsappLink}" class="whatsapp-link" target="_blank">
+                            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                            I Want This
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Create album card HTML
+        function createAlbumCard(album, coverPhoto) {
+            const imageUrl = coverPhoto ? coverPhoto.source : 'images/logo.jpg';
+            return `
+                <div class="album-card" onclick="showAlbum('${album.id}', '${album.name}')">
+                    <img src="${imageUrl}" alt="${album.name}" loading="lazy">
+                    <div class="album-overlay">
+                        <div class="album-name">${album.name}</div>
+                        <div class="album-count">View Collection →</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fetch photos from album
+        async function fetchAlbumPhotos(albumId, limit = 50) {
+            const url = `https://graph.facebook.com/v24.0/${albumId}/photos?fields=source,name,images&limit=${limit}&access_token=${CONFIG.accessToken}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.data || [];
+            } catch (error) {
+                console.error('Error fetching photos:', error);
+                return [];
+            }
+        }
+
+        // Load Exclusive Collection
+        async function loadExclusiveCollection() {
+            const container = document.getElementById('exclusiveCollection');
+            const photos = await fetchAlbumPhotos(CONFIG.albums.exclusive, 8);
+            
+            if (photos.length > 0) {
+                container.innerHTML = photos.map(photo => createProductCard(photo)).join('');
+            } else {
+                container.innerHTML = '<p style="color: var(--gold-light); text-align: center; grid-column: 1/-1;">Collection coming soon...</p>';
+            }
+        }
+
+        // Load Featured Pieces
+        async function loadFeaturedPieces() {
+            const container = document.getElementById('featuredPieces');
+            const photos = await fetchAlbumPhotos(CONFIG.albums.featured, 3);
+            
+            if (photos.length > 0) {
+                container.innerHTML = photos.map(photo => createProductCard(photo, true)).join('');
+            } else {
+                container.innerHTML = '<p style="color: #666; text-align: center; grid-column: 1/-1;">Featured pieces coming soon...</p>';
+            }
+        }
+
+        // Load Latest Arrivals (Album Covers)
+        async function loadLatestArrivals() {
+            const container = document.getElementById('latestArrivals');
+            let html = '';
+            
+            for (const album of CONFIG.albums.latestArrivals) {
+                const photos = await fetchAlbumPhotos(album.id, 1);
+                const coverPhoto = photos[0] || null;
+                html += createAlbumCard(album, coverPhoto);
+            }
+            
+            container.innerHTML = html || '<p style="color: var(--gold-light); text-align: center; grid-column: 1/-1;">More collections coming soon...</p>';
+        }
+
+        // Show Album Page
+        async function showAlbum(albumId, albumName) {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('albumPage').classList.add('active');
+            document.getElementById('albumPageTitle').textContent = albumName;
+            
+            const container = document.getElementById('albumPageProducts');
+            container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            
+            const photos = await fetchAlbumPhotos(albumId, 50);
+            document.getElementById('albumPageCount').textContent = `${photos.length} Items`;
+            
+            if (photos.length > 0) {
+                container.innerHTML = photos.map(photo => createProductCard(photo)).join('');
+            } else {
+                container.innerHTML = '<p style="color: #666; text-align: center; grid-column: 1/-1;">No items in this collection yet.</p>';
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Show Home Page
+        function showHome() {
+            document.getElementById('albumPage').classList.remove('active');
+            document.getElementById('homePage').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadExclusiveCollection();
+            loadFeaturedPieces();
+            loadLatestArrivals();
         });
     </script>
 </body>
