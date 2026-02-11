@@ -41,13 +41,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 300px;
+            min-height: 200px;
+            width: 100%;
         }
         
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--gold-light);
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gold-light);
             border-top-color: var(--gold);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -60,22 +61,22 @@
         /* Floating Buttons */
         .floating-buttons {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 9999;
         }
         
         .float-btn {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
             text-decoration: none;
         }
@@ -84,17 +85,17 @@
             transform: scale(1.1);
         }
         
-        .whatsapp-btn {
+        .whatsapp-float {
             background: #25D366;
         }
         
-        .messenger-btn {
+        .messenger-float {
             background: linear-gradient(135deg, #006AFF 0%, #00C6FF 100%);
         }
         
         .float-btn svg {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             fill: white;
         }
         
@@ -105,30 +106,45 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 5%;
+            padding: 0.8rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: rgba(74, 26, 38, 0.98);
-            box-shadow: 0 4px 30px rgba(74, 26, 38, 0.4);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
         
         .nav-logo {
-            height: 50px;
+            height: 45px;
             border-radius: 50%;
             border: 2px solid var(--gold);
         }
         
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .nav-brand h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
         }
         
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 500;
@@ -144,12 +160,46 @@
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
+            padding: 5px;
         }
         
         .mobile-menu span {
             width: 25px;
-            height: 3px;
+            height: 2px;
             background: var(--gold);
+            transition: all 0.3s ease;
+        }
+        
+        /* Mobile Nav Menu */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 65px;
+            left: 0;
+            right: 0;
+            background: var(--burgundy-dark);
+            padding: 1rem;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-nav.active {
+            display: block;
+        }
+        
+        .mobile-nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+        
+        .mobile-nav a:hover {
+            color: var(--gold);
+            background: rgba(212,175,55,0.1);
         }
         
         /* Hero Section */
@@ -160,22 +210,40 @@
             align-items: center;
             justify-content: center;
             background: var(--burgundy-dark);
-            margin-top: 70px;
+            margin-top: 65px;
+            overflow: hidden;
         }
         
-        .hero-bg {
+        .hero-slider {
             position: absolute;
             inset: 0;
-            background: url('images/logo.jpg') center center / cover no-repeat;
-            opacity: 0.2;
+            display: flex;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
         }
         
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(180deg, 
-                rgba(74, 26, 38, 0.9) 0%, 
-                rgba(107, 39, 55, 0.85) 100%);
+                rgba(74, 26, 38, 0.7) 0%, 
+                rgba(74, 26, 38, 0.85) 100%);
         }
         
         .hero-content {
@@ -187,110 +255,53 @@
         }
         
         .hero-logo {
-            width: 180px;
+            width: 140px;
             margin-bottom: 1.5rem;
             border-radius: 50%;
-            border: 4px solid var(--gold);
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
-            to { box-shadow: 0 0 60px rgba(212, 175, 55, 0.6); }
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
         }
         
         .hero-content h1 {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 600;
-            letter-spacing: 8px;
+            letter-spacing: 6px;
             margin-bottom: 0.5rem;
             color: var(--gold);
             text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
         
         .hero-content .tagline {
-            font-size: 1.1rem;
-            letter-spacing: 6px;
+            font-size: 1rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--gold-light);
             margin-bottom: 2rem;
         }
         
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
         .hero-btn {
+            display: inline-block;
             padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--burgundy-dark);
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .hero-btn.primary {
-            background: var(--gold);
-            color: var(--burgundy-dark);
             border: 2px solid var(--gold);
         }
         
-        .hero-btn.primary:hover {
+        .hero-btn:hover {
             background: transparent;
             color: var(--gold);
-        }
-        
-        .hero-btn.secondary {
-            background: transparent;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-        }
-        
-        .hero-btn.secondary:hover {
-            background: var(--gold);
-            color: var(--burgundy-dark);
-        }
-        
-        .hero-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-        
-        /* Divider */
-        .divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            padding: 2rem 0;
-            background: var(--cream);
-        }
-        
-        .divider span {
-            color: var(--gold);
-            font-size: 1.5rem;
-        }
-        
-        .divider::before, .divider::after {
-            content: '';
-            width: 100px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
         
         /* Section Styles */
         .section {
-            padding: 4rem 5%;
+            padding: 3.5rem 5%;
         }
         
         .section.burgundy {
@@ -301,33 +312,102 @@
             background: var(--cream);
         }
         
+        .section.dark {
+            background: var(--burgundy-dark);
+        }
+        
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
         
         .section-header .subtitle {
             color: var(--gold);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
         
-        .section.burgundy .section-header .subtitle {
+        .section.burgundy .section-header .subtitle,
+        .section.dark .section-header .subtitle {
             color: var(--gold-light);
         }
         
         .section-header h2 {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 600;
             color: var(--burgundy);
         }
         
-        .section.burgundy .section-header h2 {
+        .section.burgundy .section-header h2,
+        .section.dark .section-header h2 {
             color: var(--gold);
+        }
+        
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category-card {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border: 3px solid var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(74, 26, 38, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover .category-overlay {
+            background: linear-gradient(180deg, transparent 20%, rgba(74, 26, 38, 0.98) 100%);
+        }
+        
+        .category-name {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .category-count {
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
         }
         
         /* Product Grid */
@@ -337,10 +417,6 @@
             gap: 1.5rem;
             max-width: 1400px;
             margin: 0 auto;
-        }
-        
-        .product-grid.three-col {
-            grid-template-columns: repeat(3, 1fr);
         }
         
         .product-card {
@@ -354,31 +430,31 @@
         }
         
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         
         .product-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
         }
         
         .product-card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
         
         .product-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 30%, rgba(74, 26, 38, 0.95) 100%);
+            background: linear-gradient(180deg, transparent 40%, rgba(74, 26, 38, 0.95) 100%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 1.5rem;
+            padding: 1.2rem;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
         
         .product-card:hover .product-overlay {
@@ -388,60 +464,95 @@
         .product-overlay .price {
             font-family: 'Cinzel', serif;
             color: var(--gold);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
         
         .product-overlay .description {
             color: var(--gold-light);
-            font-size: 0.85rem;
-            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.2rem;
+            line-height: 1.3;
         }
         
         .product-overlay .sizes {
             color: white;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
         }
         
-        .product-overlay .whatsapp-link {
+        .buy-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 0.8rem 1.2rem;
+            gap: 6px;
+            padding: 0.6rem 1rem;
             background: #25D366;
             color: white;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: all 0.3s ease;
         }
         
-        .product-overlay .whatsapp-link:hover {
+        .buy-btn:hover {
             background: #128C7E;
         }
         
-        .product-overlay .whatsapp-link svg {
-            width: 18px;
-            height: 18px;
+        .buy-btn svg {
+            width: 16px;
+            height: 16px;
             fill: white;
         }
         
-        /* Featured Section (3 columns) */
-        .featured-grid {
+        /* View All Button */
+        .view-all-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .view-all-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .section.cream .view-all-btn {
+            border-color: var(--burgundy);
+            color: var(--burgundy);
+        }
+        
+        .view-all-btn:hover {
+            background: var(--gold);
+            color: var(--burgundy-dark);
+        }
+        
+        .section.cream .view-all-btn:hover {
+            background: var(--burgundy);
+            color: white;
+        }
+        
+        /* Bestsellers Grid (3 columns, larger) */
+        .bestseller-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
-        .featured-card {
+        .bestseller-card {
             position: relative;
             overflow: hidden;
             aspect-ratio: 3/4;
@@ -449,103 +560,59 @@
             transition: all 0.3s ease;
         }
         
-        .featured-card:hover {
+        .bestseller-card:hover {
             transform: scale(1.02);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-        }
-        
-        .featured-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        
-        .featured-card:hover img {
-            transform: scale(1.08);
-        }
-        
-        .featured-card .product-overlay {
-            padding: 2rem;
-        }
-        
-        .featured-card .price {
-            font-size: 1.8rem;
-        }
-        
-        /* Album Grid (Latest Arrivals) */
-        .album-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .album-card {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 1;
-            border: 3px solid var(--gold);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .album-card:hover {
-            transform: translateY(-8px);
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
         
-        .album-card img {
+        .bestseller-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
         }
         
-        .album-card:hover img {
-            transform: scale(1.1);
+        .bestseller-card:hover img {
+            transform: scale(1.05);
         }
         
-        .album-card .album-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(74, 26, 38, 0.95) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+        .bestseller-card .product-overlay {
             padding: 1.5rem;
-            transition: all 0.3s ease;
         }
         
-        .album-card .album-name {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
+        .bestseller-card .price {
+            font-size: 1.5rem;
         }
         
-        .album-card .album-count {
-            color: var(--gold-light);
-            font-size: 0.8rem;
+        .bestseller-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gold);
+            color: var(--burgundy-dark);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 5;
         }
         
         /* About Section */
         .about-section {
-            padding: 4rem 5%;
+            padding: 3.5rem 5%;
             background: var(--cream);
         }
         
         .about-content {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
         
         .about-content h2 {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--burgundy);
             margin-bottom: 1.5rem;
         }
@@ -554,36 +621,36 @@
             color: #555;
             line-height: 1.8;
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         
         /* Contact Section */
         .contact-section {
-            padding: 4rem 5%;
+            padding: 3.5rem 5%;
             background: var(--burgundy-dark);
         }
         
         .contact-content {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             text-align: center;
         }
         
         .contact-content h2 {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
         
         .contact-content p {
             color: var(--gold-light);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         
         .contact-content .address {
             color: white;
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin: 1.5rem 0;
             line-height: 1.8;
         }
@@ -593,19 +660,19 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
         
         .contact-btn {
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.3s ease;
             border: 2px solid;
         }
@@ -632,8 +699,8 @@
         }
         
         .contact-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             fill: currentColor;
         }
         
@@ -646,7 +713,7 @@
         }
         
         footer img {
-            width: 70px;
+            width: 60px;
             border-radius: 50%;
             border: 2px solid var(--gold);
             margin-bottom: 1rem;
@@ -654,72 +721,90 @@
         
         footer p {
             color: var(--gold-light);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
         
         footer .tagline {
             color: var(--gold);
             font-family: 'Cinzel', serif;
             margin-bottom: 0.5rem;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
         }
         
-        /* Album Page Styles */
-        .album-page {
+        /* Category Page */
+        .category-page {
             display: none;
-            padding-top: 90px;
+            padding-top: 65px;
             min-height: 100vh;
         }
         
-        .album-page.active {
+        .category-page.active {
             display: block;
         }
         
-        .album-page-header {
+        .category-page-header {
             background: var(--burgundy);
-            padding: 3rem 5%;
+            padding: 2.5rem 5%;
             text-align: center;
         }
         
-        .album-page-header h1 {
+        .category-page-header h1 {
             font-family: 'Cinzel', serif;
             color: var(--gold);
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
         }
         
-        .album-page-header p {
+        .category-page-header p {
             color: var(--gold-light);
+            font-size: 0.9rem;
         }
         
         .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--gold);
+            gap: 6px;
+            color: var(--gold-light);
             text-decoration: none;
             margin-bottom: 1rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: color 0.3s ease;
         }
         
         .back-btn:hover {
-            color: var(--gold-light);
+            color: var(--gold);
         }
         
-        .album-page-content {
-            padding: 3rem 5%;
+        .category-page-content {
+            padding: 2.5rem 5%;
             background: var(--cream);
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #888;
+        }
+        
+        .empty-state p {
+            font-size: 1rem;
         }
         
         /* Responsive */
         @media (max-width: 1024px) {
-            .product-grid, .album-grid {
+            .product-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
             
-            .featured-grid {
+            .category-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .bestseller-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
             }
         }
         
@@ -732,31 +817,48 @@
                 display: flex;
             }
             
-            /* All product grids show 1 column on mobile for big images */
-            .product-grid, .featured-grid {
+            .nav-brand h1 {
+                font-size: 1rem;
+            }
+            
+            /* Categories: 2 columns on tablet, good tap targets */
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            /* Products: 1 column for big beautiful images on mobile */
+            .product-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
                 max-width: 400px;
                 margin: 0 auto;
             }
             
-            .album-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+            /* Bestsellers: 1 column on mobile */
+            .bestseller-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 400px;
+                margin: 0 auto;
             }
             
             .hero-content h1 {
                 font-size: 2rem;
-                letter-spacing: 4px;
+                letter-spacing: 3px;
             }
             
             .hero-content .tagline {
                 font-size: 0.8rem;
-                letter-spacing: 3px;
+                letter-spacing: 2px;
+            }
+            
+            .hero-logo {
+                width: 100px;
             }
             
             .section-header h2 {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
             
             .product-overlay {
@@ -764,21 +866,41 @@
                 background: linear-gradient(180deg, transparent 50%, rgba(74, 26, 38, 0.95) 100%);
             }
             
-            /* Shorter WhatsApp button on mobile */
-            .product-overlay .whatsapp-link {
-                padding: 0.6rem 1rem;
-                font-size: 0.75rem;
+            .category-name {
+                font-size: 1rem;
             }
         }
         
         @media (max-width: 500px) {
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .hero-content h1 {
+                font-size: 1.6rem;
             }
             
             .contact-buttons {
                 flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .category-grid {
+                gap: 0.8rem;
+            }
+            
+            .category-overlay {
+                padding: 1rem;
+            }
+            
+            .category-name {
+                font-size: 0.9rem;
+            }
+            
+            .category-count {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -786,81 +908,90 @@
 <body>
     <!-- Floating Buttons -->
     <div class="floating-buttons">
-        <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="float-btn whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+        <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="float-btn whatsapp-float" target="_blank" title="Chat on WhatsApp">
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </a>
-        <a href="https://m.me/trendzclosetny" class="float-btn messenger-btn" target="_blank" title="Chat on Messenger">
+        <a href="https://m.me/trendzclosetny" class="float-btn messenger-float" target="_blank" title="Chat on Messenger">
             <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.301 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
         </a>
     </div>
 
     <!-- Navigation -->
     <nav>
-        <img src="images/logo.jpg" alt="Trendz Closet" class="nav-logo">
+        <a href="#" class="nav-brand" onclick="showHome(); return false;">
+            <img src="images/logo.jpg" alt="Trendz Closet" class="nav-logo">
+            <h1>Trendz Closet</h1>
+        </a>
         <ul class="nav-links">
-            <li><a href="#home" onclick="showHome()">Home</a></li>
-            <li><a href="#collections">Collections</a></li>
+            <li><a href="#" onclick="showHome(); return false;">Home</a></li>
+            <li><a href="#categories">Shop</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="mobile-menu">
+        <div class="mobile-menu" onclick="toggleMobileNav()">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#" onclick="showHome(); closeMobileNav();">Home</a>
+        <a href="#categories" onclick="closeMobileNav();">Shop by Category</a>
+        <a href="#new-arrivals" onclick="closeMobileNav();">New Arrivals</a>
+        <a href="#about" onclick="closeMobileNav();">About</a>
+        <a href="#contact" onclick="closeMobileNav();">Contact</a>
+    </div>
 
     <!-- Main Home Page -->
     <main id="homePage">
         <!-- Hero Section -->
         <section class="hero" id="home">
-            <div class="hero-bg"></div>
+            <div class="hero-slider" id="heroSlider">
+                <!-- Slides will be populated by JS -->
+            </div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <img src="images/logo.jpg" alt="Trendz Closet Logo" class="hero-logo">
                 <h1>Trendz Closet</h1>
                 <p class="tagline">Designer Pakistani & Indian Fashion</p>
-                <div class="hero-buttons">
-                    <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="hero-btn primary" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-                        WhatsApp Us
-                    </a>
-                    <a href="#collections" class="hero-btn secondary">View Collection</a>
-                </div>
+                <a href="#categories" class="hero-btn">Shop Now</a>
             </div>
         </section>
 
-        <div class="divider"><span>✦</span></div>
-
-        <!-- Our Exclusive Collection Section -->
-        <section class="section burgundy" id="collections">
+        <!-- Shop by Category Section -->
+        <section class="section cream" id="categories">
             <div class="section-header">
-                <p class="subtitle">Curated For You</p>
-                <h2>Our Exclusive Collection</h2>
+                <p class="subtitle">Explore Our Collections</p>
+                <h2>Shop by Category</h2>
             </div>
-            <div class="product-grid" id="exclusiveCollection">
+            <div class="category-grid" id="categoryGrid">
                 <div class="loading"><div class="spinner"></div></div>
             </div>
         </section>
 
-        <!-- Featured Pieces Section -->
-        <section class="section cream">
+        <!-- New Arrivals Section -->
+        <section class="section burgundy" id="new-arrivals">
             <div class="section-header">
-                <p class="subtitle">Handpicked For You</p>
-                <h2>Featured Pieces</h2>
+                <p class="subtitle">Just In</p>
+                <h2>New Arrivals</h2>
             </div>
-            <div class="featured-grid" id="featuredPieces">
+            <div class="product-grid" id="newArrivalsGrid">
                 <div class="loading"><div class="spinner"></div></div>
+            </div>
+            <div class="view-all-container">
+                <a href="#" class="view-all-btn" onclick="showCategory('New Arrivals', CONFIG.albums.newArrivals); return false;">View All New Arrivals</a>
             </div>
         </section>
 
-        <!-- Latest Arrivals (Album Links) -->
-        <section class="section burgundy">
+        <!-- Bestsellers / Staff Picks Section -->
+        <section class="section cream" id="bestsellers">
             <div class="section-header">
-                <p class="subtitle">Explore More</p>
-                <h2>Latest Arrivals</h2>
+                <p class="subtitle">Customer Favorites</p>
+                <h2>Bestsellers</h2>
             </div>
-            <div class="album-grid" id="latestArrivals">
+            <div class="bestseller-grid" id="bestsellersGrid">
                 <div class="loading"><div class="spinner"></div></div>
             </div>
         </section>
@@ -870,8 +1001,7 @@
             <div class="about-content">
                 <h2>About Trendz Closet</h2>
                 <p>Welcome to Trendz Closet, your premier destination for authentic Pakistani and Indian fashion in New York. We bring the finest designer collections directly to you, featuring exquisite craftsmanship, luxurious fabrics, and timeless designs.</p>
-                <p>From elegant everyday wear to stunning bridal collections, our carefully curated selection ensures you find the perfect outfit for every occasion. Each piece is handpicked for quality and style.</p>
-                <p>Visit us in Jamaica, NY or browse our collection online. We offer personalized styling consultations and ship across the United States.</p>
+                <p>From elegant bridal wear to stunning party outfits and comfortable casual styles, our carefully curated selection ensures you find the perfect outfit for every occasion.</p>
             </div>
         </section>
 
@@ -882,8 +1012,7 @@
                 <p>Open Daily by Appointment</p>
                 <div class="address">
                     17007 118th Ave<br>
-                    Jamaica, NY 11434<br>
-                    United States
+                    Jamaica, NY 11434
                 </div>
                 <div class="contact-buttons">
                     <a href="https://wa.me/16464097127?text=Hi! I'd like to schedule an appointment" class="contact-btn whatsapp" target="_blank">
@@ -906,37 +1035,60 @@
         </footer>
     </main>
 
-    <!-- Album Detail Page (Hidden by default) -->
-    <div class="album-page" id="albumPage">
-        <div class="album-page-header">
-            <a href="#" class="back-btn" onclick="showHome(); return false;">← Back to Collections</a>
-            <h1 id="albumPageTitle">Album Name</h1>
-            <p id="albumPageCount">0 Items</p>
+    <!-- Category Detail Page -->
+    <div class="category-page" id="categoryPage">
+        <div class="category-page-header">
+            <a href="#" class="back-btn" onclick="showHome(); return false;">← Back to Home</a>
+            <h1 id="categoryPageTitle">Category Name</h1>
+            <p id="categoryPageCount">0 Items</p>
         </div>
-        <div class="album-page-content">
-            <div class="product-grid" id="albumPageProducts">
+        <div class="category-page-content">
+            <div class="product-grid" id="categoryPageProducts">
                 <div class="loading"><div class="spinner"></div></div>
             </div>
         </div>
     </div>
 
     <script>
-        // Facebook API Configuration
+        // =====================================================
+        // FACEBOOK API CONFIGURATION
+        // =====================================================
         // PERMANENT TOKEN - Never expires!
         const CONFIG = {
             accessToken: 'EAAMmIb1yWV8BQo2ZCChyp0y9pxHnjdoOT7sZCoQWcGiKvq22QWw2QeRmMTIFPZAtKjT3PR3X7aJb2YYAzWw6CU8YdYZAMQ4VQoaWcZAa97MMuX36EmIlFZBauZBZBBuaZCLM6zuLa0ERwEJh5ZCgiVaIV7pfPwsSzcPQkpYFjT6EAFsK1oJNk3ePB7xIw95Ii0NthE2nUGEwNq',
             pageId: '373134302848785',
             whatsappNumber: '16464097127',
-            albums: {
-                exclusive: '1520260263436089',
-                featured: '1520260906769358',
-                latestArrivals: [
-                    { id: '1520262290102553', name: 'Album Test 1' },
-                    { id: '1520263293435786', name: 'Album Test 2' }
-                ]
-            }
+            
+            // =====================================================
+            // ALBUM CONFIGURATION - UPDATE THESE WITH YOUR ALBUM IDs
+            // =====================================================
+            // To find album IDs: Go to Graph API Explorer, query "me/albums"
+            // 
+            // CATEGORIES: These show as clickable cards on homepage
+            // Create Facebook albums with these exact names, then add their IDs here
+            categories: [
+                { name: 'Bridal Collection', albumId: '1520260263436089', icon: '👰' },
+                { name: 'Party Wear', albumId: '1520260906769358', icon: '✨' },
+                { name: 'Casual Wear', albumId: '1520262290102553', icon: '👗' },
+                { name: 'Sarees', albumId: '1520263293435786', icon: '🌸' },
+                { name: 'Eid Collection', albumId: '', icon: '🌙' },
+                { name: 'Sale', albumId: '', icon: '🏷️' }
+            ],
+            
+            // NEW ARRIVALS: Shows latest items (album where you add new products)
+            newArrivals: '1520260263436089',
+            
+            // BESTSELLERS: Your top picks / staff favorites
+            bestsellers: '1520260906769358',
+            
+            // Albums to EXCLUDE from showing (system albums)
+            excludeAlbums: ['Profile pictures', 'Cover photos', 'Timeline Photos', 'Mobile uploads']
         };
 
+        // =====================================================
+        // HELPER FUNCTIONS
+        // =====================================================
+        
         // Parse price and details from caption
         function parseCaption(caption) {
             if (!caption) return { price: 'Contact for Price', description: '', sizes: '' };
@@ -944,20 +1096,19 @@
             const priceMatch = caption.match(/\$[\d,.]+/);
             const price = priceMatch ? priceMatch[0] : 'Contact for Price';
             
-            // Extract sizes (S, M, L, XL patterns)
-            const sizeMatch = caption.match(/[SMLX]{1,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}/gi);
+            // Extract sizes
+            const sizeMatch = caption.match(/\b[SMLX]{1,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}\b/gi);
             const sizes = sizeMatch ? sizeMatch[0].trim() : '';
             
-            // Get description (remove price and sizes)
+            // Get description
             let description = caption
                 .replace(/\$[\d,.]+/, '')
-                .replace(/[SMLX]{1,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}/gi, '')
+                .replace(/\b[SMLX]{1,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}[\s,]*[SMLX]{0,2}\b/gi, '')
                 .replace(/^[\s\-–—]+|[\s\-–—]+$/g, '')
                 .trim();
             
-            // Limit description length
-            if (description.length > 50) {
-                description = description.substring(0, 50) + '...';
+            if (description.length > 40) {
+                description = description.substring(0, 40) + '...';
             }
             
             return { price, description, sizes };
@@ -965,48 +1116,13 @@
 
         // Create WhatsApp link
         function createWhatsAppLink(productName, price) {
-            const message = encodeURIComponent(`Hi! I'm interested in this item: ${productName} (${price}). Please share more details!`);
+            const message = encodeURIComponent(`Hi! I'm interested in: ${productName} (${price}). Please share details!`);
             return `https://wa.me/${CONFIG.whatsappNumber}?text=${message}`;
-        }
-
-        // Create product card HTML
-        function createProductCard(photo, isLarge = false) {
-            const { price, description, sizes } = parseCaption(photo.name);
-            const imageUrl = photo.source || (photo.images && photo.images[0] ? photo.images[0].source : '');
-            const whatsappLink = createWhatsAppLink(description || 'this product', price);
-            
-            return `
-                <div class="product-card ${isLarge ? 'featured-card' : ''}">
-                    <img src="${imageUrl}" alt="${description}" loading="lazy">
-                    <div class="product-overlay">
-                        <div class="price">${price}</div>
-                        ${description ? `<div class="description">${description}</div>` : ''}
-                        ${sizes ? `<div class="sizes">${sizes}</div>` : ''}
-                        <a href="${whatsappLink}" class="whatsapp-link" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-                            Buy Now
-                        </a>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Create album card HTML
-        function createAlbumCard(album, coverPhoto) {
-            const imageUrl = coverPhoto ? coverPhoto.source : 'images/logo.jpg';
-            return `
-                <div class="album-card" onclick="showAlbum('${album.id}', '${album.name}')">
-                    <img src="${imageUrl}" alt="${album.name}" loading="lazy">
-                    <div class="album-overlay">
-                        <div class="album-name">${album.name}</div>
-                        <div class="album-count">View Collection →</div>
-                    </div>
-                </div>
-            `;
         }
 
         // Fetch photos from album
         async function fetchAlbumPhotos(albumId, limit = 50) {
+            if (!albumId) return [];
             const url = `https://graph.facebook.com/v24.0/${albumId}/photos?fields=source,name,images&limit=${limit}&access_token=${CONFIG.accessToken}`;
             try {
                 const response = await fetch(url);
@@ -1018,77 +1134,189 @@
             }
         }
 
-        // Load Exclusive Collection
-        async function loadExclusiveCollection() {
-            const container = document.getElementById('exclusiveCollection');
-            const photos = await fetchAlbumPhotos(CONFIG.albums.exclusive, 8);
-            
-            if (photos.length > 0) {
-                container.innerHTML = photos.map(photo => createProductCard(photo)).join('');
-            } else {
-                container.innerHTML = '<p style="color: var(--gold-light); text-align: center; grid-column: 1/-1;">Collection coming soon...</p>';
+        // Fetch all albums from page
+        async function fetchAllAlbums() {
+            const url = `https://graph.facebook.com/v24.0/${CONFIG.pageId}/albums?fields=id,name,count,cover_photo{source}&limit=50&access_token=${CONFIG.accessToken}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.data || [];
+            } catch (error) {
+                console.error('Error fetching albums:', error);
+                return [];
             }
         }
 
-        // Load Featured Pieces
-        async function loadFeaturedPieces() {
-            const container = document.getElementById('featuredPieces');
-            const photos = await fetchAlbumPhotos(CONFIG.albums.featured, 3);
+        // =====================================================
+        // HTML GENERATORS
+        // =====================================================
+        
+        // Create product card
+        function createProductCard(photo, showBadge = false, badgeText = '') {
+            const { price, description, sizes } = parseCaption(photo.name);
+            const imageUrl = photo.source || (photo.images && photo.images[0] ? photo.images[0].source : '');
+            const whatsappLink = createWhatsAppLink(description || 'this item', price);
             
-            if (photos.length > 0) {
-                container.innerHTML = photos.map(photo => createProductCard(photo, true)).join('');
-            } else {
-                container.innerHTML = '<p style="color: #666; text-align: center; grid-column: 1/-1;">Featured pieces coming soon...</p>';
-            }
+            return `
+                <div class="product-card ${showBadge ? 'bestseller-card' : ''}">
+                    ${showBadge ? `<div class="bestseller-badge">${badgeText}</div>` : ''}
+                    <img src="${imageUrl}" alt="${description}" loading="lazy">
+                    <div class="product-overlay">
+                        <div class="price">${price}</div>
+                        ${description ? `<div class="description">${description}</div>` : ''}
+                        ${sizes ? `<div class="sizes">${sizes}</div>` : ''}
+                        <a href="${whatsappLink}" class="buy-btn" target="_blank">
+                            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                            Buy Now
+                        </a>
+                    </div>
+                </div>
+            `;
         }
 
-        // Load Latest Arrivals (Album Covers)
-        async function loadLatestArrivals() {
-            const container = document.getElementById('latestArrivals');
+        // Create category card
+        function createCategoryCard(category, coverPhoto, itemCount) {
+            const imageUrl = coverPhoto ? coverPhoto.source : 'images/logo.jpg';
+            const hasItems = category.albumId && itemCount > 0;
+            
+            return `
+                <div class="category-card" onclick="${hasItems ? `showCategory('${category.name}', '${category.albumId}')` : 'return false;'}" style="${!hasItems ? 'opacity: 0.6; cursor: default;' : ''}">
+                    <img src="${imageUrl}" alt="${category.name}" loading="lazy">
+                    <div class="category-overlay">
+                        <div class="category-name">${category.name}</div>
+                        <div class="category-count">${hasItems ? `${itemCount} Items` : 'Coming Soon'}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // =====================================================
+        // PAGE LOADERS
+        // =====================================================
+        
+        // Load categories
+        async function loadCategories() {
+            const container = document.getElementById('categoryGrid');
             let html = '';
             
-            for (const album of CONFIG.albums.latestArrivals) {
-                const photos = await fetchAlbumPhotos(album.id, 1);
-                const coverPhoto = photos[0] || null;
-                html += createAlbumCard(album, coverPhoto);
+            for (const category of CONFIG.categories) {
+                let coverPhoto = null;
+                let itemCount = 0;
+                
+                if (category.albumId) {
+                    const photos = await fetchAlbumPhotos(category.albumId, 1);
+                    coverPhoto = photos[0] || null;
+                    // Get count
+                    const allPhotos = await fetchAlbumPhotos(category.albumId, 100);
+                    itemCount = allPhotos.length;
+                }
+                
+                html += createCategoryCard(category, coverPhoto, itemCount);
             }
             
-            container.innerHTML = html || '<p style="color: var(--gold-light); text-align: center; grid-column: 1/-1;">More collections coming soon...</p>';
+            container.innerHTML = html || '<div class="empty-state"><p>Categories coming soon...</p></div>';
         }
 
-        // Show Album Page
-        async function showAlbum(albumId, albumName) {
-            document.getElementById('homePage').style.display = 'none';
-            document.getElementById('albumPage').classList.add('active');
-            document.getElementById('albumPageTitle').textContent = albumName;
-            
-            const container = document.getElementById('albumPageProducts');
-            container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-            
-            const photos = await fetchAlbumPhotos(albumId, 50);
-            document.getElementById('albumPageCount').textContent = `${photos.length} Items`;
+        // Load new arrivals
+        async function loadNewArrivals() {
+            const container = document.getElementById('newArrivalsGrid');
+            const photos = await fetchAlbumPhotos(CONFIG.newArrivals, 4);
             
             if (photos.length > 0) {
                 container.innerHTML = photos.map(photo => createProductCard(photo)).join('');
             } else {
-                container.innerHTML = '<p style="color: #666; text-align: center; grid-column: 1/-1;">No items in this collection yet.</p>';
+                container.innerHTML = '<div class="empty-state"><p>New arrivals coming soon...</p></div>';
+            }
+        }
+
+        // Load bestsellers
+        async function loadBestsellers() {
+            const container = document.getElementById('bestsellersGrid');
+            const photos = await fetchAlbumPhotos(CONFIG.bestsellers, 3);
+            
+            if (photos.length > 0) {
+                container.innerHTML = photos.map((photo, i) => 
+                    createProductCard(photo, true, i === 0 ? 'Top Pick' : 'Bestseller')
+                ).join('');
+            } else {
+                container.innerHTML = '<div class="empty-state"><p>Bestsellers coming soon...</p></div>';
+            }
+        }
+
+        // Load hero slider images
+        async function loadHeroSlider() {
+            const container = document.getElementById('heroSlider');
+            const photos = await fetchAlbumPhotos(CONFIG.newArrivals, 5);
+            
+            if (photos.length > 0) {
+                container.innerHTML = photos.map((photo, i) => `
+                    <div class="hero-slide ${i === 0 ? 'active' : ''}">
+                        <img src="${photo.source}" alt="Trendz Closet">
+                    </div>
+                `).join('');
+                
+                // Start slideshow
+                let currentSlide = 0;
+                setInterval(() => {
+                    const slides = document.querySelectorAll('.hero-slide');
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 4000);
+            }
+        }
+
+        // =====================================================
+        // NAVIGATION
+        // =====================================================
+        
+        // Show category page
+        async function showCategory(categoryName, albumId) {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('categoryPage').classList.add('active');
+            document.getElementById('categoryPageTitle').textContent = categoryName;
+            
+            const container = document.getElementById('categoryPageProducts');
+            container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            
+            const photos = await fetchAlbumPhotos(albumId, 100);
+            document.getElementById('categoryPageCount').textContent = `${photos.length} Items`;
+            
+            if (photos.length > 0) {
+                container.innerHTML = photos.map(photo => createProductCard(photo)).join('');
+            } else {
+                container.innerHTML = '<div class="empty-state"><p>No items in this category yet.</p></div>';
             }
             
             window.scrollTo(0, 0);
+            closeMobileNav();
         }
 
-        // Show Home Page
+        // Show home page
         function showHome() {
-            document.getElementById('albumPage').classList.remove('active');
+            document.getElementById('categoryPage').classList.remove('active');
             document.getElementById('homePage').style.display = 'block';
             window.scrollTo(0, 0);
+            closeMobileNav();
         }
 
-        // Initialize
+        // Mobile navigation
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+        
+        function closeMobileNav() {
+            document.getElementById('mobileNav').classList.remove('active');
+        }
+
+        // =====================================================
+        // INITIALIZE
+        // =====================================================
         document.addEventListener('DOMContentLoaded', () => {
-            loadExclusiveCollection();
-            loadFeaturedPieces();
-            loadLatestArrivals();
+            loadHeroSlider();
+            loadCategories();
+            loadNewArrivals();
+            loadBestsellers();
         });
     </script>
 </body>
