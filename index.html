@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trendz Closet | Designer Pakistani & Indian Fashion</title>
+    <meta name="description" content="Trendz Closet — Authentic Pakistani & Indian designer fashion. Bridal, party wear, casual & custom orders. Shipping nationwide across the USA.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --deep: #1a0a10;
@@ -24,6 +25,7 @@
             --text-mid: #5a4a50;
             --text-light: #8a7a80;
             --white: #ffffff;
+            --green-wa: #25D366;
             --shadow-soft: 0 4px 20px rgba(26, 10, 16, 0.08);
             --shadow-mid: 0 8px 30px rgba(26, 10, 16, 0.12);
             --shadow-strong: 0 12px 40px rgba(26, 10, 16, 0.2);
@@ -42,1144 +44,408 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ===== UTILITY ===== */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 200px;
-            width: 100%;
-        }
-
-        .spinner {
-            width: 36px;
-            height: 36px;
-            border: 2px solid var(--sand);
-            border-top-color: var(--gold);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
+        .loading { display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%; }
+        .spinner { width: 36px; height: 36px; border: 2px solid var(--sand); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* ===== SHIPPING BANNER ===== */
+        .top-banner {
+            background: var(--gold); overflow: hidden; position: fixed;
+            top: 0; left: 0; right: 0; z-index: 1100; height: 32px;
+            display: flex; align-items: center;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .marquee-track {
+            display: flex; animation: marquee 25s linear infinite; white-space: nowrap;
         }
 
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        .marquee-item {
+            display: inline-flex; align-items: center; gap: 8px; padding: 0 40px;
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--deep);
         }
 
-        .animate-in {
-            animation: fadeUp 0.7s ease forwards;
-        }
+        .marquee-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--burgundy); opacity: 0.4; }
 
         /* ===== FLOATING BUTTONS ===== */
-        .floating-buttons {
-            position: fixed;
-            bottom: 24px;
-            right: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 9999;
-        }
-
-        .float-btn {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-        }
-
-        .float-btn:hover {
-            transform: scale(1.12) translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0,0,0,0.3);
-        }
-
+        .floating-buttons { position: fixed; bottom: 24px; right: 18px; display: flex; flex-direction: column; gap: 10px; z-index: 9999; }
+        .float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.25); transition: transform 0.3s ease, box-shadow 0.3s ease; text-decoration: none; }
+        .float-btn:hover { transform: scale(1.12) translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.3); }
         .whatsapp-float { background: #25D366; }
         .messenger-float { background: linear-gradient(135deg, #006AFF, #00C6FF); }
-
         .float-btn svg { width: 26px; height: 26px; fill: white; }
 
         /* ===== NAVIGATION ===== */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 0 5%;
-            height: 68px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(26, 10, 16, 0.97);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(201, 168, 76, 0.15);
-            transition: all 0.3s ease;
+            position: fixed; top: 32px; left: 0; right: 0; z-index: 1000;
+            padding: 0 5%; height: 64px; display: flex; justify-content: space-between;
+            align-items: center; background: rgba(26, 10, 16, 0.97);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12); transition: all 0.3s ease;
         }
+        nav.scrolled { height: 56px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav-logo { height: 40px; width: 40px; border-radius: 50%; border: 1.5px solid var(--gold); object-fit: cover; transition: transform 0.3s ease; }
+        nav.scrolled .nav-logo { height: 34px; width: 34px; }
+        .nav-brand-text { display: flex; flex-direction: column; }
+        .nav-brand h1 { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.3rem; font-weight: 600; letter-spacing: 2px; line-height: 1.1; }
+        .nav-brand .nav-subtitle { font-size: 0.5rem; color: var(--gold-pale); letter-spacing: 3px; text-transform: uppercase; font-weight: 400; opacity: 0.6; }
+        .nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; transition: color 0.3s ease; position: relative; padding-bottom: 4px; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--gold); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+        .mobile-menu span { width: 22px; height: 1.5px; background: var(--gold); transition: all 0.3s ease; display: block; }
+        .mobile-menu.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 4px); }
+        .mobile-menu.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
-        nav.scrolled {
-            height: 58px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
+        .mobile-nav { display: none; position: fixed; top: 96px; left: 0; right: 0; bottom: 0; background: rgba(26,10,16,0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999; padding: 1.5rem; animation: fadeIn 0.25s ease; }
+        .mobile-nav.active { display: flex; flex-direction: column; }
+        .mobile-nav a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; padding: 1rem 0; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; border-bottom: 1px solid rgba(201,168,76,0.08); transition: all 0.3s ease; }
+        .mobile-nav a:hover, .mobile-nav a:active { color: var(--gold); padding-left: 10px; }
 
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-decoration: none;
-        }
+        /* ===== HERO ===== */
+        .hero { min-height: 88vh; position: relative; display: flex; align-items: center; justify-content: center; background: var(--deep); margin-top: 96px; overflow: hidden; }
+        .hero-slider { position: absolute; inset: 0; }
+        .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease-in-out; }
+        .hero-slide.active { opacity: 1; }
+        .hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-gradient { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(26,10,16,0.5) 0%, rgba(26,10,16,0.25) 35%, rgba(26,10,16,0.35) 60%, rgba(26,10,16,0.88) 100%); }
+        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 5; }
+        .hero-content { position: relative; z-index: 3; text-align: center; padding: 2rem; animation: fadeUp 1s ease 0.3s both; }
+        .hero-logo { width: 115px; height: 115px; margin-bottom: 1.5rem; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 60px rgba(201,168,76,0.25); object-fit: cover; }
+        .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 600; letter-spacing: 8px; margin-bottom: 0.5rem; color: var(--white); text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+        .hero-content .tagline { font-size: 0.82rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold-pale); margin-bottom: 0.8rem; font-weight: 300; }
+        .hero-content .hero-desc { font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 300; max-width: 440px; margin: 0 auto 2.2rem; line-height: 1.6; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .hero-btn { display: inline-block; padding: 13px 36px; text-decoration: none; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; font-size: 0.72rem; transition: all 0.4s ease; border: 1.5px solid var(--gold); border-radius: var(--radius); }
+        .hero-btn.primary { background: var(--gold); color: var(--deep); }
+        .hero-btn.primary:hover { background: transparent; color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.25); }
+        .hero-btn.secondary { background: transparent; color: var(--gold); }
+        .hero-btn.secondary:hover { background: var(--gold); color: var(--deep); transform: translateY(-2px); }
+        .slide-indicators { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 5; }
+        .slide-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s ease; border: none; padding: 0; }
+        .slide-dot.active { background: var(--gold); transform: scale(1.3); }
 
-        .nav-logo {
-            height: 42px;
-            width: 42px;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+        /* ===== TRUST STRIP ===== */
+        .trust-strip { background: var(--deep); padding: 1.2rem 5%; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; border-bottom: 1px solid rgba(201,168,76,0.1); }
+        .trust-item { display: flex; align-items: center; gap: 10px; color: var(--gold-pale); font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 400; }
+        .trust-icon { width: 28px; height: 28px; border-radius: 50%; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
 
-        nav.scrolled .nav-logo {
-            height: 36px;
-            width: 36px;
-        }
-
-        .nav-brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .nav-brand h1 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--gold);
-            font-size: 1.35rem;
-            font-weight: 600;
-            letter-spacing: 2.5px;
-            line-height: 1.1;
-        }
-
-        .nav-brand .nav-subtitle {
-            font-size: 0.55rem;
-            color: var(--gold-pale);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 400;
-            opacity: 0.7;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 0.72rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-            padding-bottom: 4px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1.5px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 6px;
-            background: none;
-            border: none;
-        }
-
-        .mobile-menu span {
-            width: 22px;
-            height: 1.5px;
-            background: var(--gold);
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        .mobile-menu.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 4px);
-        }
-
-        .mobile-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(4px, -4px);
-        }
-
-        /* Mobile Nav */
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 68px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 10, 16, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 999;
-            padding: 2rem 1.5rem;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .mobile-nav.active {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .mobile-nav a {
-            display: block;
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            padding: 1.1rem 0;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 400;
-            border-bottom: 1px solid rgba(201,168,76,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav a:hover,
-        .mobile-nav a:active {
-            color: var(--gold);
-            padding-left: 10px;
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            min-height: 85vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--deep);
-            margin-top: 68px;
-            overflow: hidden;
-        }
-
-        .hero-slider {
-            position: absolute;
-            inset: 0;
-        }
-
-        .hero-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-gradient {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                180deg,
-                rgba(26, 10, 16, 0.55) 0%,
-                rgba(26, 10, 16, 0.35) 30%,
-                rgba(26, 10, 16, 0.45) 60%,
-                rgba(26, 10, 16, 0.85) 100%
-            );
-            z-index: 1;
-        }
-
-        /* Decorative gold line at bottom of hero */
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            z-index: 5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            padding: 2rem;
-            animation: fadeUp 1s ease 0.3s both;
-        }
-
-        .hero-logo {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 1.8rem;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 60px rgba(201, 168, 76, 0.3);
-            object-fit: cover;
-        }
-
-        .hero-content h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            letter-spacing: 8px;
-            margin-bottom: 0.6rem;
-            color: var(--white);
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
-
-        .hero-content .tagline {
-            font-size: 0.85rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--gold-pale);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            padding: 14px 40px;
-            background: var(--gold);
-            color: var(--deep);
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            transition: all 0.4s ease;
-            border: 1.5px solid var(--gold);
-            border-radius: var(--radius);
-        }
-
-        .hero-btn:hover {
-            background: transparent;
-            color: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.25);
-        }
-
-        /* Slide indicators */
-        .slide-indicators {
-            position: absolute;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 5;
-        }
-
-        .slide-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            padding: 0;
-        }
-
-        .slide-dot.active {
-            background: var(--gold);
-            transform: scale(1.3);
-        }
-
-        /* ===== SECTION STYLES ===== */
-        .section {
-            padding: 5rem 5%;
-        }
-
+        /* ===== SECTIONS ===== */
+        .section { padding: 5rem 5%; }
         .section.bg-cream { background: var(--cream); }
         .section.bg-warm { background: var(--cream-warm); }
         .section.bg-burgundy { background: var(--burgundy); }
         .section.bg-deep { background: var(--deep); }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header .label {
-            display: inline-block;
-            color: var(--gold);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            position: relative;
-        }
-
-        .section-header .label::before,
-        .section-header .label::after {
-            content: '';
-            display: inline-block;
-            width: 30px;
-            height: 1px;
-            background: var(--gold);
-            vertical-align: middle;
-            margin: 0 12px;
-            opacity: 0.5;
-        }
-
-        .section.bg-burgundy .section-header .label,
-        .section.bg-deep .section-header .label {
-            color: var(--gold-pale);
-        }
-
-        .section-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            letter-spacing: 1px;
-        }
-
-        .section.bg-burgundy .section-header h2,
-        .section.bg-deep .section-header h2 {
-            color: var(--gold);
-        }
-
-        .section-header .section-desc {
-            margin-top: 0.8rem;
-            color: var(--text-light);
-            font-size: 0.95rem;
-            font-weight: 300;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section.bg-burgundy .section-header .section-desc,
-        .section.bg-deep .section-header .section-desc {
-            color: var(--gold-pale);
-            opacity: 0.7;
-        }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header .label { display: inline-block; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; font-size: 0.68rem; font-weight: 600; margin-bottom: 0.8rem; }
+        .section-header .label::before, .section-header .label::after { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--gold); vertical-align: middle; margin: 0 12px; opacity: 0.4; }
+        .section.bg-burgundy .section-header .label, .section.bg-deep .section-header .label { color: var(--gold-pale); }
+        .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; color: var(--text-dark); letter-spacing: 1px; }
+        .section.bg-burgundy .section-header h2, .section.bg-deep .section-header h2 { color: var(--gold); }
+        .section-header .section-desc { margin-top: 0.8rem; color: var(--text-light); font-size: 0.95rem; font-weight: 300; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+        .section.bg-burgundy .section-header .section-desc, .section.bg-deep .section-header .section-desc { color: var(--gold-pale); opacity: 0.65; }
+        .gold-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.25; }
 
         /* ===== CATEGORY GRID ===== */
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .category-card {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 4/5;
-            border-radius: var(--radius-lg);
-            cursor: pointer;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .category-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-strong);
-        }
-
-        .category-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .category-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .category-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(26, 10, 16, 0.92) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.5rem;
-            transition: background 0.3s ease;
-        }
-
-        .category-card:hover .category-overlay {
-            background: linear-gradient(180deg, transparent 25%, rgba(26, 10, 16, 0.95) 100%);
-        }
-
-        .category-name {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--white);
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .category-count {
-            color: var(--gold-pale);
-            font-size: 0.72rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 400;
-        }
-
-        .category-icon {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            background: rgba(26, 10, 16, 0.6);
-            backdrop-filter: blur(8px);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            z-index: 2;
-        }
+        .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1100px; margin: 0 auto; }
+        .category-card { position: relative; overflow: hidden; aspect-ratio: 4/5; border-radius: var(--radius-lg); cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .category-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-strong); }
+        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .category-card:hover img { transform: scale(1.08); }
+        .category-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(26,10,16,0.92) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; transition: background 0.3s ease; }
+        .category-card:hover .category-overlay { background: linear-gradient(180deg, transparent 25%, rgba(26,10,16,0.95) 100%); }
+        .category-name { font-family: 'Cormorant Garamond', serif; color: var(--white); font-size: 1.15rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .category-count { color: var(--gold-pale); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; }
+        .category-icon { position: absolute; top: 14px; right: 14px; background: rgba(26,10,16,0.55); backdrop-filter: blur(8px); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; z-index: 2; }
 
         /* ===== PRODUCT GRID ===== */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.2rem;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; max-width: 1300px; margin: 0 auto; }
+        .product-card { position: relative; overflow: hidden; cursor: pointer; aspect-ratio: 3/4; border-radius: var(--radius-lg); transition: transform 0.4s ease, box-shadow 0.4s ease; background: var(--sand); }
+        .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-strong); }
+        .product-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .product-card:hover img { transform: scale(1.06); }
+        .product-info { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(26,10,16,0.92) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.2rem; opacity: 0; transition: opacity 0.35s ease; }
+        .product-card:hover .product-info { opacity: 1; }
+        .product-price { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .product-caption { color: rgba(255,255,255,0.85); font-size: 0.76rem; line-height: 1.5; margin-bottom: 0.7rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-weight: 300; }
+        .card-actions { display: flex; gap: 6px; align-items: center; }
+        .buy-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; background: var(--green-wa); color: white; text-decoration: none; font-size: 0.65rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border-radius: var(--radius); transition: all 0.3s ease; flex: 1; }
+        .buy-btn:hover { background: #128C7E; transform: translateY(-1px); }
+        .buy-btn svg { width: 14px; height: 14px; fill: white; }
+        .zoom-btn { width: 34px; height: 34px; border-radius: var(--radius); background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.2); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; }
+        .zoom-btn:hover { background: rgba(255,255,255,0.25); }
+        .zoom-btn svg { width: 16px; height: 16px; }
 
-        .product-card {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 3/4;
-            border-radius: var(--radius-lg);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            background: var(--sand);
-        }
+        .view-all-wrap { text-align: center; margin-top: 2.5rem; }
+        .view-all-btn { display: inline-block; padding: 12px 32px; border: 1.5px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; font-size: 0.72rem; transition: all 0.3s ease; border-radius: var(--radius); }
+        .section.bg-cream .view-all-btn, .section.bg-warm .view-all-btn { border-color: var(--burgundy); color: var(--burgundy); }
+        .view-all-btn:hover { background: var(--gold); color: var(--deep); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
+        .section.bg-cream .view-all-btn:hover, .section.bg-warm .view-all-btn:hover { background: var(--burgundy); border-color: var(--burgundy); color: var(--white); }
 
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-strong);
-        }
+        /* ===== BESTSELLER ===== */
+        .bestseller-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1050px; margin: 0 auto; }
+        .bestseller-card { border-radius: var(--radius-lg); overflow: hidden; }
+        .bestseller-card .product-info { padding: 1.5rem; }
+        .bestseller-card .product-price { font-size: 1.4rem; }
+        .bestseller-badge { position: absolute; top: 14px; left: 14px; background: var(--gold); color: var(--deep); padding: 5px 12px; font-size: 0.58rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; z-index: 5; border-radius: 3px; }
 
-        .product-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
+        /* ===== CUSTOM ORDER ===== */
+        .custom-order-section { padding: 4rem 5%; background: var(--burgundy); text-align: center; position: relative; overflow: hidden; }
+        .custom-order-section::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
+        .custom-order-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+        .custom-order-inner h2 { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 2.2rem; font-weight: 600; margin-bottom: 0.6rem; }
+        .custom-order-inner p { color: var(--gold-pale); font-size: 0.95rem; font-weight: 300; line-height: 1.7; margin-bottom: 2rem; opacity: 0.8; }
+        .custom-order-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; background: var(--gold); color: var(--deep); text-decoration: none; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem; border-radius: var(--radius); transition: all 0.4s ease; border: 1.5px solid var(--gold); }
+        .custom-order-btn:hover { background: transparent; color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.25); }
+        .custom-order-btn svg { width: 18px; height: 18px; fill: currentColor; }
 
-        .product-card:hover img {
-            transform: scale(1.06);
-        }
+        /* ===== SIZE GUIDE ===== */
+        .size-guide-section { padding: 4rem 5%; background: var(--cream); }
+        .size-guide-inner { max-width: 700px; margin: 0 auto; }
+        .size-table-wrap { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
+        .size-table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 0.85rem; }
+        .size-table thead { background: var(--deep); }
+        .size-table thead th { color: var(--gold); font-weight: 500; padding: 14px 16px; text-align: center; letter-spacing: 1.5px; text-transform: uppercase; font-size: 0.7rem; }
+        .size-table tbody td { padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--sand); color: var(--text-mid); font-weight: 400; }
+        .size-table tbody tr:hover { background: var(--cream-warm); }
+        .size-table tbody td:first-child { font-weight: 600; color: var(--burgundy); letter-spacing: 1px; }
+        .size-note { text-align: center; margin-top: 1.2rem; color: var(--text-light); font-size: 0.8rem; font-weight: 300; font-style: italic; }
 
-        .product-info {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 45%, rgba(26, 10, 16, 0.92) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.2rem;
-            opacity: 0;
-            transition: opacity 0.35s ease;
-        }
+        /* ===== CUSTOMER GALLERY ===== */
+        .customer-gallery-section { padding: 5rem 5%; background: var(--cream-warm); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1100px; margin: 0 auto; }
+        .gallery-card { position: relative; overflow: hidden; aspect-ratio: 4/5; border-radius: var(--radius-lg); cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .gallery-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-mid); }
+        .gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-card:hover img { transform: scale(1.05); }
+        .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(26,10,16,0.85) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem; }
+        .gallery-name { color: var(--white); font-size: 0.8rem; font-weight: 500; margin-bottom: 0.15rem; }
+        .gallery-location { color: var(--gold-pale); font-size: 0.65rem; letter-spacing: 1px; font-weight: 300; }
+        .gallery-empty { grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; }
+        .gallery-empty p { color: var(--text-light); font-size: 0.95rem; font-weight: 300; margin-bottom: 1.5rem; line-height: 1.7; }
+        .gallery-cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: var(--green-wa); color: white; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border-radius: var(--radius); transition: all 0.3s ease; }
+        .gallery-cta-btn:hover { background: #128C7E; transform: translateY(-2px); }
+        .gallery-cta-btn svg { width: 16px; height: 16px; fill: white; }
 
-        .product-card:hover .product-info {
-            opacity: 1;
-        }
+        /* ===== LIGHTBOX ===== */
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(10,5,8,0.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); animation: fadeIn 0.25s ease; }
+        .lightbox.active { display: flex; }
+        .lightbox-inner { display: flex; width: 100%; height: 100%; overflow: hidden; }
+        .lightbox-image-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; position: relative; }
+        .lightbox-image-wrap img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: var(--radius); box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: scaleIn 0.35s ease; }
+        .lightbox-close { position: absolute; top: 20px; right: 20px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); color: white; font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10; }
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+        .lightbox-sidebar { width: 360px; background: var(--deep); border-left: 1px solid rgba(201,168,76,0.1); padding: 3rem 2rem; overflow-y: auto; display: flex; flex-direction: column; }
+        .lb-price { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 2rem; font-weight: 600; margin-bottom: 1rem; }
+        .lb-caption { color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.8; font-weight: 300; margin-bottom: 2rem; white-space: pre-line; }
+        .lb-divider { width: 40px; height: 1px; background: var(--gold); margin-bottom: 1.5rem; opacity: 0.4; }
+        .lb-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+        .lb-buy-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; background: var(--green-wa); color: white; text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; border-radius: var(--radius); transition: all 0.3s ease; }
+        .lb-buy-btn:hover { background: #128C7E; transform: translateY(-2px); }
+        .lb-buy-btn svg { width: 18px; height: 18px; fill: white; }
+        .lb-custom-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; border: 1.5px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; border-radius: var(--radius); transition: all 0.3s ease; background: transparent; }
+        .lb-custom-btn:hover { background: var(--gold); color: var(--deep); transform: translateY(-2px); }
 
-        .product-price {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--gold);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
+        /* ===== ABOUT ===== */
+        .about-section { padding: 5rem 5%; background: var(--cream-warm); position: relative; }
+        .about-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+        .about-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--text-dark); margin-bottom: 1.5rem; font-weight: 600; }
+        .about-inner p { color: var(--text-mid); line-height: 1.9; margin-bottom: 1rem; font-size: 1rem; font-weight: 300; }
+        .about-divider { width: 60px; height: 1.5px; background: var(--gold); margin: 2rem auto 0; }
 
-        .product-caption {
-            color: rgba(255,255,255,0.85);
-            font-size: 0.78rem;
-            line-height: 1.5;
-            margin-bottom: 0.8rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-weight: 300;
-        }
-
-        .buy-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            padding: 10px 16px;
-            background: #25D366;
-            color: white;
-            text-decoration: none;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            border-radius: var(--radius);
-            transition: all 0.3s ease;
-            align-self: flex-start;
-        }
-
-        .buy-btn:hover {
-            background: #128C7E;
-            transform: translateY(-1px);
-        }
-
-        .buy-btn svg {
-            width: 15px;
-            height: 15px;
-            fill: white;
-        }
-
-        /* ===== VIEW ALL BUTTON ===== */
-        .view-all-wrap {
-            text-align: center;
-            margin-top: 2.5rem;
-        }
-
-        .view-all-btn {
-            display: inline-block;
-            padding: 12px 32px;
-            border: 1.5px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            font-size: 0.72rem;
-            transition: all 0.3s ease;
-            border-radius: var(--radius);
-        }
-
-        .section.bg-cream .view-all-btn,
-        .section.bg-warm .view-all-btn {
-            border-color: var(--burgundy);
-            color: var(--burgundy);
-        }
-
-        .view-all-btn:hover {
-            background: var(--gold);
-            color: var(--deep);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
-        }
-
-        .section.bg-cream .view-all-btn:hover,
-        .section.bg-warm .view-all-btn:hover {
-            background: var(--burgundy);
-            border-color: var(--burgundy);
-            color: var(--white);
-        }
-
-        /* ===== BESTSELLER GRID ===== */
-        .bestseller-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 1050px;
-            margin: 0 auto;
-        }
-
-        .bestseller-card {
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-        }
-
-        .bestseller-card .product-info {
-            padding: 1.5rem;
-        }
-
-        .bestseller-card .product-price {
-            font-size: 1.5rem;
-        }
-
-        .bestseller-badge {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            background: var(--gold);
-            color: var(--deep);
-            padding: 5px 12px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            z-index: 5;
-            border-radius: 3px;
-        }
-
-        /* ===== ABOUT SECTION ===== */
-        .about-section {
-            padding: 5rem 5%;
-            background: var(--cream-warm);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
-        }
-
-        .about-inner {
-            max-width: 720px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-inner h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .about-inner p {
-            color: var(--text-mid);
-            line-height: 1.9;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            font-weight: 300;
-        }
-
-        .about-divider {
-            width: 60px;
-            height: 1.5px;
-            background: var(--gold);
-            margin: 2rem auto 0;
-        }
-
-        /* ===== CONTACT SECTION ===== */
-        .contact-section {
-            padding: 5rem 5%;
-            background: var(--deep);
-            position: relative;
-        }
-
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
-        }
-
-        .contact-inner {
-            max-width: 480px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-inner h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
-            color: var(--gold);
-            margin-bottom: 0.6rem;
-        }
-
-        .contact-inner .contact-sub {
-            color: var(--gold-pale);
-            font-size: 0.85rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
-
-        .contact-inner .address {
-            color: rgba(255,255,255,0.85);
-            font-size: 1rem;
-            margin: 1.8rem 0;
-            line-height: 1.9;
-            font-weight: 300;
-        }
-
-        .contact-btns {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .contact-btn {
-            padding: 12px 24px;
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-size: 0.72rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            border: 1.5px solid;
-            border-radius: var(--radius);
-        }
-
-        .contact-btn.wa {
-            background: #25D366;
-            border-color: #25D366;
-            color: white;
-        }
-
-        .contact-btn.wa:hover {
-            background: transparent;
-            transform: translateY(-2px);
-        }
-
-        .contact-btn.call {
-            background: var(--gold);
-            border-color: var(--gold);
-            color: var(--deep);
-        }
-
-        .contact-btn.call:hover {
-            background: transparent;
-            color: var(--gold);
-            transform: translateY(-2px);
-        }
-
-        .contact-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
+        /* ===== CONTACT ===== */
+        .contact-section { padding: 5rem 5%; background: var(--deep); position: relative; }
+        .contact-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.25; }
+        .contact-inner { max-width: 480px; margin: 0 auto; text-align: center; }
+        .contact-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--gold); margin-bottom: 0.5rem; }
+        .contact-inner .contact-sub { color: var(--gold-pale); font-size: 0.82rem; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; }
+        .contact-inner .address { color: rgba(255,255,255,0.8); font-size: 1rem; margin: 1.8rem 0; line-height: 1.9; font-weight: 300; }
+        .contact-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+        .contact-btn { padding: 12px 24px; text-decoration: none; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; font-size: 0.72rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; border: 1.5px solid; border-radius: var(--radius); }
+        .contact-btn.wa { background: var(--green-wa); border-color: var(--green-wa); color: white; }
+        .contact-btn.wa:hover { background: transparent; transform: translateY(-2px); }
+        .contact-btn.call { background: var(--gold); border-color: var(--gold); color: var(--deep); }
+        .contact-btn.call:hover { background: transparent; color: var(--gold); transform: translateY(-2px); }
+        .contact-btn svg { width: 16px; height: 16px; fill: currentColor; }
 
         /* ===== FOOTER ===== */
-        footer {
-            background: #0f060a;
-            padding: 2.5rem 5%;
-            text-align: center;
-            border-top: 2px solid rgba(201, 168, 76, 0.2);
-        }
+        footer { background: #0f060a; padding: 2.5rem 5%; text-align: center; border-top: 2px solid rgba(201,168,76,0.15); }
+        footer img { width: 50px; height: 50px; border-radius: 50%; border: 1.5px solid var(--gold); margin-bottom: 1rem; object-fit: cover; }
+        footer .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 0.95rem; letter-spacing: 3px; margin-bottom: 0.5rem; }
+        footer .footer-copy { color: var(--gold-pale); font-size: 0.72rem; opacity: 0.4; font-weight: 300; }
 
-        footer img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 1.5px solid var(--gold);
-            margin-bottom: 1rem;
-            object-fit: cover;
-        }
-
-        footer .footer-brand {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--gold);
-            font-size: 0.95rem;
-            letter-spacing: 3px;
-            margin-bottom: 0.5rem;
-        }
-
-        footer .footer-copy {
-            color: var(--gold-pale);
-            font-size: 0.75rem;
-            opacity: 0.5;
-            font-weight: 300;
-        }
-
-        /* ===== CATEGORY DETAIL PAGE ===== */
-        .category-page {
-            display: none;
-            padding-top: 68px;
-            min-height: 100vh;
-        }
-
+        /* ===== CATEGORY PAGE ===== */
+        .category-page { display: none; padding-top: 96px; min-height: 100vh; }
         .category-page.active { display: block; }
-
-        .cat-page-header {
-            background: var(--burgundy);
-            padding: 2.5rem 5%;
-            text-align: center;
-            position: relative;
-        }
-
-        .cat-page-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.4;
-        }
-
-        .cat-page-header h1 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--gold);
-            font-size: 2rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .cat-page-header p {
-            color: var(--gold-pale);
-            font-size: 0.85rem;
-            font-weight: 300;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--gold-pale);
-            text-decoration: none;
-            margin-bottom: 1rem;
-            font-size: 0.8rem;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            letter-spacing: 1px;
-        }
-
+        .cat-page-header { background: var(--burgundy); padding: 2.5rem 5%; text-align: center; position: relative; }
+        .cat-page-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.3; }
+        .cat-page-header h1 { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 2rem; margin-bottom: 0.4rem; }
+        .cat-page-header p { color: var(--gold-pale); font-size: 0.85rem; font-weight: 300; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-pale); text-decoration: none; margin-bottom: 1rem; font-size: 0.8rem; font-weight: 400; transition: color 0.3s ease; letter-spacing: 1px; }
         .back-link:hover { color: var(--gold); }
+        .cat-page-body { padding: 2.5rem 5%; background: var(--cream); }
+        .empty-state { text-align: center; padding: 3rem; color: var(--text-light); }
 
-        .cat-page-body {
-            padding: 2.5rem 5%;
-            background: var(--cream);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-light);
-        }
-
-        /* ===== MOBILE RESPONSIVE ===== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .product-grid { grid-template-columns: repeat(3, 1fr); }
             .bestseller-grid { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu { display: flex; }
-
-            nav { height: 62px; }
-            nav.scrolled { height: 56px; }
-
-            .hero { margin-top: 62px; min-height: 80vh; }
-
-            .nav-brand h1 { font-size: 1.15rem; letter-spacing: 1.5px; }
+            nav { height: 58px; top: 32px; }
+            nav.scrolled { height: 52px; }
+            .hero { margin-top: 90px; min-height: 80vh; }
+            .nav-brand h1 { font-size: 1.1rem; letter-spacing: 1.5px; }
             .nav-brand .nav-subtitle { display: none; }
-
             .section { padding: 3.5rem 4%; }
-
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-
+            .trust-strip { gap: 1.5rem; padding: 1rem 3%; }
+            .trust-item { font-size: 0.6rem; letter-spacing: 1px; gap: 6px; }
+            .trust-icon { width: 24px; height: 24px; font-size: 0.7rem; }
+            .category-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
             .category-name { font-size: 1rem; }
-            .category-count { font-size: 0.65rem; }
-            .category-icon { width: 32px; height: 32px; font-size: 0.85rem; }
-
-            /* 2 columns on mobile for products */
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-                max-width: 100%;
-            }
-
-            .bestseller-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-                max-width: 100%;
-            }
-
-            /* Always show overlay on mobile */
-            .product-info {
-                opacity: 1;
-                background: linear-gradient(180deg, transparent 50%, rgba(26, 10, 16, 0.9) 100%);
-            }
-
+            .category-count { font-size: 0.62rem; }
+            .category-icon { width: 30px; height: 30px; font-size: 0.8rem; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; max-width: 100%; }
+            .bestseller-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; max-width: 100%; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .product-info { opacity: 1; background: linear-gradient(180deg, transparent 50%, rgba(26,10,16,0.9) 100%); }
             .product-price { font-size: 1rem; }
-            .product-caption { font-size: 0.7rem; -webkit-line-clamp: 2; margin-bottom: 0.5rem; }
-            .buy-btn { padding: 8px 12px; font-size: 0.6rem; }
-
-            .hero-content h1 {
-                font-size: 2.2rem;
-                letter-spacing: 4px;
-            }
-
-            .hero-content .tagline {
-                font-size: 0.7rem;
-                letter-spacing: 3px;
-            }
-
-            .hero-logo {
-                width: 90px;
-                height: 90px;
-            }
-
+            .product-caption { font-size: 0.68rem; -webkit-line-clamp: 2; margin-bottom: 0.4rem; }
+            .buy-btn { padding: 7px 10px; font-size: 0.58rem; }
+            .zoom-btn { width: 30px; height: 30px; }
+            .zoom-btn svg { width: 13px; height: 13px; }
+            .hero-content h1 { font-size: 2.2rem; letter-spacing: 4px; }
+            .hero-content .tagline { font-size: 0.68rem; letter-spacing: 3px; }
+            .hero-content .hero-desc { font-size: 0.85rem; }
+            .hero-logo { width: 85px; height: 85px; }
+            .hero-btn { padding: 11px 28px; font-size: 0.65rem; }
             .section-header h2 { font-size: 1.8rem; }
             .section-header .label { font-size: 0.6rem; }
-            .section-header .label::before,
-            .section-header .label::after { width: 20px; margin: 0 8px; }
-
-            .about-inner h2,
-            .contact-inner h2 { font-size: 1.8rem; }
-
-            .mobile-nav { top: 62px; }
+            .section-header .label::before, .section-header .label::after { width: 18px; margin: 0 8px; }
+            .about-inner h2, .contact-inner h2 { font-size: 1.8rem; }
+            .custom-order-inner h2 { font-size: 1.8rem; }
+            .mobile-nav { top: 90px; }
+            .category-page { padding-top: 90px; }
+            .lightbox-inner { flex-direction: column; }
+            .lightbox-sidebar { width: 100%; max-height: 45vh; padding: 1.5rem; border-left: none; border-top: 1px solid rgba(201,168,76,0.1); }
+            .lightbox-image-wrap { padding: 1rem; }
+            .lightbox-image-wrap img { max-height: 50vh; }
+            .lb-price { font-size: 1.5rem; }
+            .lb-caption { font-size: 0.82rem; margin-bottom: 1rem; }
+            .lightbox-close { top: 12px; right: 12px; width: 38px; height: 38px; font-size: 1.1rem; }
         }
 
         @media (max-width: 500px) {
-            .hero-content h1 {
-                font-size: 1.7rem;
-                letter-spacing: 3px;
-            }
-
+            .hero-content h1 { font-size: 1.7rem; letter-spacing: 3px; }
             .hero { min-height: 75vh; }
-
+            .hero-content .hero-desc { font-size: 0.8rem; margin-bottom: 1.5rem; }
+            .hero-buttons { gap: 10px; }
+            .hero-btn { padding: 10px 22px; font-size: 0.6rem; }
             .section { padding: 3rem 3.5%; }
-
-            .category-grid { gap: 0.6rem; }
-            .category-overlay { padding: 1rem; }
-            .category-name { font-size: 0.9rem; }
-
-            .product-grid { gap: 0.6rem; }
-            .product-info { padding: 0.8rem; }
-            .product-price { font-size: 0.9rem; margin-bottom: 0.2rem; }
-            .product-caption { font-size: 0.65rem; margin-bottom: 0.4rem; }
-            .buy-btn { padding: 6px 10px; font-size: 0.55rem; gap: 4px; }
-            .buy-btn svg { width: 12px; height: 12px; }
-
-            .bestseller-badge { font-size: 0.5rem; padding: 4px 8px; top: 8px; left: 8px; }
-
-            .contact-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .contact-btn {
-                width: 100%;
-                max-width: 260px;
-                justify-content: center;
-            }
-
-            .floating-buttons { bottom: 16px; right: 12px; gap: 8px; }
-            .float-btn { width: 46px; height: 46px; }
+            .category-grid { gap: 0.5rem; }
+            .category-overlay { padding: 0.8rem; }
+            .category-name { font-size: 0.85rem; }
+            .product-grid { gap: 0.5rem; }
+            .product-info { padding: 0.7rem; }
+            .product-price { font-size: 0.85rem; margin-bottom: 0.15rem; }
+            .product-caption { font-size: 0.62rem; margin-bottom: 0.3rem; }
+            .buy-btn { padding: 6px 8px; font-size: 0.52rem; gap: 4px; }
+            .buy-btn svg { width: 11px; height: 11px; }
+            .zoom-btn { width: 26px; height: 26px; }
+            .zoom-btn svg { width: 11px; height: 11px; }
+            .bestseller-badge { font-size: 0.48rem; padding: 3px 7px; top: 8px; left: 8px; }
+            .contact-btns { flex-direction: column; align-items: center; }
+            .contact-btn { width: 100%; max-width: 260px; justify-content: center; }
+            .floating-buttons { bottom: 14px; right: 10px; gap: 8px; }
+            .float-btn { width: 44px; height: 44px; }
             .float-btn svg { width: 22px; height: 22px; }
+            .trust-strip { gap: 0.8rem; }
+            .trust-item { font-size: 0.52rem; gap: 4px; }
+            .size-table { font-size: 0.75rem; }
+            .size-table thead th { padding: 10px 8px; font-size: 0.6rem; }
+            .size-table tbody td { padding: 8px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+            .marquee-item { font-size: 0.6rem; padding: 0 25px; }
         }
     </style>
 </head>
 <body>
+    <div class="top-banner"><div class="marquee-track">
+        <span class="marquee-item">✈️ We Ship Nationwide Across the USA</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">🌟 Authentic Designer Collections</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">✂️ Custom Stitching Available</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">📦 TX · CA · NJ · IL · FL · NY & All 50 States</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">💎 100% Original Designer Wear</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">✈️ We Ship Nationwide Across the USA</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">🌟 Authentic Designer Collections</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">✂️ Custom Stitching Available</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">📦 TX · CA · NJ · IL · FL · NY & All 50 States</span><span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">💎 100% Original Designer Wear</span><span class="marquee-item"><span class="dot"></span></span>
+    </div></div>
 
-    <!-- Floating Buttons -->
     <div class="floating-buttons">
-        <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="float-btn whatsapp-float" target="_blank" title="Chat on WhatsApp">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-        <a href="https://m.me/trendzclosetny" class="float-btn messenger-float" target="_blank" title="Chat on Messenger">
-            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.301 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
-        </a>
+        <a href="https://wa.me/16464097127?text=Hi! I'm interested in your collection" class="float-btn whatsapp-float" target="_blank" title="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        <a href="https://m.me/trendzclosetny" class="float-btn messenger-float" target="_blank" title="Chat on Messenger"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.301 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg></a>
     </div>
 
-    <!-- Navigation -->
+    <div class="lightbox" id="lightbox"><div class="lightbox-inner">
+        <div class="lightbox-image-wrap">
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+            <img id="lbImage" src="" alt="Product">
+        </div>
+        <div class="lightbox-sidebar">
+            <div class="lb-price" id="lbPrice"></div>
+            <div class="lb-divider"></div>
+            <div class="lb-caption" id="lbCaption"></div>
+            <div class="lb-actions">
+                <a href="#" class="lb-buy-btn" id="lbBuyBtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Buy Now on WhatsApp</a>
+                <a href="https://wa.me/16464097127?text=Hi! I'd like to request a custom order with alterations." class="lb-custom-btn" target="_blank">✂️ Request Custom Stitching</a>
+            </div>
+        </div>
+    </div></div>
+
     <nav id="mainNav">
         <a href="#" class="nav-brand" onclick="showHome(); return false;">
             <img src="images/logo.jpg" alt="Trendz Closet" class="nav-logo">
-            <div class="nav-brand-text">
-                <h1>Trendz Closet</h1>
-                <span class="nav-subtitle">Designer Fashion</span>
-            </div>
+            <div class="nav-brand-text"><h1>Trendz Closet</h1><span class="nav-subtitle">Designer Fashion</span></div>
         </a>
         <ul class="nav-links">
             <li><a href="#" onclick="showHome(); return false;">Home</a></li>
             <li><a href="#categories">Shop</a></li>
             <li><a href="#new-arrivals">New Arrivals</a></li>
+            <li><a href="#size-guide">Size Guide</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="mobile-menu" id="mobileMenuBtn" onclick="toggleMobileNav()" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <button class="mobile-menu" id="mobileMenuBtn" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
 
-    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
         <a href="#" onclick="showHome(); closeMobileNav();">Home</a>
         <a href="#categories" onclick="closeMobileNav();">Shop by Category</a>
         <a href="#new-arrivals" onclick="closeMobileNav();">New Arrivals</a>
         <a href="#bestsellers" onclick="closeMobileNav();">Bestsellers</a>
+        <a href="#size-guide" onclick="closeMobileNav();">Size Guide</a>
+        <a href="#customer-gallery" onclick="closeMobileNav();">Customer Gallery</a>
         <a href="#about" onclick="closeMobileNav();">About</a>
         <a href="#contact" onclick="closeMobileNav();">Contact</a>
     </div>
 
-    <!-- Main Home Page -->
     <main id="homePage">
-
-        <!-- Hero -->
         <section class="hero" id="home">
             <div class="hero-slider" id="heroSlider"></div>
             <div class="hero-gradient"></div>
@@ -1187,83 +453,121 @@
                 <img src="images/logo.jpg" alt="Trendz Closet" class="hero-logo">
                 <h1>Trendz Closet</h1>
                 <p class="tagline">Designer Pakistani & Indian Fashion</p>
-                <a href="#categories" class="hero-btn">Explore Collection</a>
+                <p class="hero-desc">Where tradition meets elegance. Curated designer collections for the modern woman, shipped to your doorstep anywhere in the USA.</p>
+                <div class="hero-buttons">
+                    <a href="#categories" class="hero-btn primary">Explore Collection</a>
+                    <a href="https://wa.me/16464097127?text=Hi! I'd like to request a custom order." class="hero-btn secondary" target="_blank">Custom Order</a>
+                </div>
             </div>
             <div class="slide-indicators" id="slideIndicators"></div>
         </section>
 
-        <!-- Shop by Category -->
+        <div class="trust-strip">
+            <div class="trust-item"><div class="trust-icon">📦</div>Ships Nationwide</div>
+            <div class="trust-item"><div class="trust-icon">✂️</div>Custom Stitching</div>
+            <div class="trust-item"><div class="trust-icon">💎</div>100% Authentic</div>
+            <div class="trust-item"><div class="trust-icon">💬</div>WhatsApp Support</div>
+        </div>
+
         <section class="section bg-cream" id="categories">
             <div class="section-header">
                 <p class="label">Explore Our Collections</p>
                 <h2>Shop by Category</h2>
-                <p class="section-desc">Handpicked designer pieces for every occasion</p>
+                <p class="section-desc">From bridal splendor to everyday grace, find your perfect ensemble</p>
             </div>
-            <div class="category-grid" id="categoryGrid">
-                <div class="loading"><div class="spinner"></div></div>
-            </div>
+            <div class="category-grid" id="categoryGrid"><div class="loading"><div class="spinner"></div></div></div>
         </section>
 
-        <!-- New Arrivals -->
+        <div class="gold-divider"></div>
+
         <section class="section bg-deep" id="new-arrivals">
             <div class="section-header">
                 <p class="label">Just In</p>
                 <h2>New Arrivals</h2>
-                <p class="section-desc">The latest additions to our collection</p>
+                <p class="section-desc">Fresh off the runway, straight from the finest ateliers of Pakistan and India</p>
             </div>
-            <div class="product-grid" id="newArrivalsGrid">
-                <div class="loading"><div class="spinner"></div></div>
-            </div>
-            <div class="view-all-wrap">
-                <a href="#" class="view-all-btn" onclick="showCategory('New Arrivals', CONFIG.albums.newArrivals); return false;">View All New Arrivals</a>
-            </div>
+            <div class="product-grid" id="newArrivalsGrid"><div class="loading"><div class="spinner"></div></div></div>
+            <div class="view-all-wrap"><a href="#" class="view-all-btn" onclick="showCategory('New Arrivals', CONFIG.albums.newArrivals); return false;">View All New Arrivals</a></div>
         </section>
 
-        <!-- Bestsellers -->
         <section class="section bg-warm" id="bestsellers">
             <div class="section-header">
                 <p class="label">Customer Favorites</p>
                 <h2>Bestsellers</h2>
-                <p class="section-desc">Most loved pieces from our collection</p>
+                <p class="section-desc">The pieces our customers fall in love with again and again</p>
             </div>
-            <div class="bestseller-grid" id="bestsellersGrid">
-                <div class="loading"><div class="spinner"></div></div>
+            <div class="bestseller-grid" id="bestsellersGrid"><div class="loading"><div class="spinner"></div></div></div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <section class="custom-order-section">
+            <div class="custom-order-inner">
+                <h2>Your Dream Outfit, Custom Made</h2>
+                <p>Want a specific design, custom stitching, or alterations? We work directly with top designers in Pakistan and India to bring your vision to life. Just share your idea and we'll handle the rest.</p>
+                <a href="https://wa.me/16464097127?text=Hi! I'd like to discuss a custom order. Here's what I have in mind:" class="custom-order-btn" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                    Request Custom Order
+                </a>
             </div>
         </section>
 
-        <!-- About -->
+        <section class="size-guide-section" id="size-guide">
+            <div class="section-header">
+                <p class="label">Find Your Fit</p>
+                <h2>Size Guide</h2>
+                <p class="section-desc">Use this chart to find your perfect size. When in doubt, message us and we'll help you pick the right fit.</p>
+            </div>
+            <div class="size-guide-inner">
+                <div class="size-table-wrap">
+                    <table class="size-table">
+                        <thead><tr><th>Size</th><th>Bust (in)</th><th>Waist (in)</th><th>Hip (in)</th><th>US Size</th></tr></thead>
+                        <tbody>
+                            <tr><td>XS</td><td>32 – 33</td><td>25 – 26</td><td>35 – 36</td><td>0 – 2</td></tr>
+                            <tr><td>S</td><td>34 – 35</td><td>27 – 28</td><td>37 – 38</td><td>4 – 6</td></tr>
+                            <tr><td>M</td><td>36 – 37</td><td>29 – 30</td><td>39 – 40</td><td>8 – 10</td></tr>
+                            <tr><td>L</td><td>38 – 40</td><td>31 – 33</td><td>41 – 43</td><td>12 – 14</td></tr>
+                            <tr><td>XL</td><td>41 – 43</td><td>34 – 36</td><td>44 – 46</td><td>16 – 18</td></tr>
+                            <tr><td>XXL</td><td>44 – 46</td><td>37 – 39</td><td>47 – 49</td><td>20 – 22</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="size-note">Need help with measurements? Send us a message on WhatsApp and we'll guide you through it.</p>
+            </div>
+        </section>
+
+        <div class="gold-divider"></div>
+
+        <section class="customer-gallery-section" id="customer-gallery">
+            <div class="section-header">
+                <p class="label">Real Customers, Real Style</p>
+                <h2>Customer Gallery</h2>
+                <p class="section-desc">Our beautiful customers wearing their Trendz Closet favorites</p>
+            </div>
+            <div class="gallery-grid" id="customerGallery"></div>
+        </section>
+
         <section class="about-section" id="about">
             <div class="about-inner">
                 <h2>About Trendz Closet</h2>
-                <p>Welcome to Trendz Closet, your premier destination for authentic Pakistani and Indian fashion in New York. We bring the finest designer collections directly to you, featuring exquisite craftsmanship, luxurious fabrics, and timeless designs.</p>
-                <p>From elegant bridal wear to stunning party outfits and comfortable casual styles, our carefully curated selection ensures you find the perfect outfit for every occasion.</p>
+                <p>Welcome to Trendz Closet, your premier destination for authentic Pakistani and Indian fashion in New York. We bring the finest designer collections directly to you, featuring exquisite craftsmanship, luxurious fabrics, and timeless designs that tell a story.</p>
+                <p>From elegant bridal wear to stunning party outfits and comfortable casual styles, our carefully curated selection ensures you find the perfect outfit for every occasion. We believe every woman deserves to feel like royalty, whether she's in New York, Texas, California, or anywhere across the United States.</p>
                 <div class="about-divider"></div>
             </div>
         </section>
 
-        <!-- Contact -->
         <section class="contact-section" id="contact">
             <div class="contact-inner">
                 <h2>Visit Us</h2>
                 <p class="contact-sub">Open Daily by Appointment</p>
-                <div class="address">
-                    17007 118th Ave<br>
-                    Jamaica, NY 11434
-                </div>
+                <div class="address">17007 118th Ave<br>Jamaica, NY 11434</div>
                 <div class="contact-btns">
-                    <a href="https://wa.me/16464097127?text=Hi! I'd like to schedule an appointment" class="contact-btn wa" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-                        WhatsApp
-                    </a>
-                    <a href="tel:+16464097127" class="contact-btn call">
-                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        Call Us
-                    </a>
+                    <a href="https://wa.me/16464097127?text=Hi! I'd like to schedule an appointment" class="contact-btn wa" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> WhatsApp</a>
+                    <a href="tel:+16464097127" class="contact-btn call"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> Call Us</a>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
         <footer>
             <img src="images/logo.jpg" alt="Trendz Closet">
             <p class="footer-brand">✦ Dress Like Royalty ✦</p>
@@ -1271,29 +575,22 @@
         </footer>
     </main>
 
-    <!-- Category Detail Page -->
     <div class="category-page" id="categoryPage">
         <div class="cat-page-header">
-            <a href="#" class="back-link" onclick="showHome(); return false;">← Back to Home</a>
+            <a href="#" class="back-link" onclick="navigateBack(); return false;">← Back</a>
             <h1 id="categoryPageTitle">Category Name</h1>
             <p id="categoryPageCount">0 Items</p>
         </div>
         <div class="cat-page-body">
-            <div class="product-grid" id="categoryPageProducts">
-                <div class="loading"><div class="spinner"></div></div>
-            </div>
+            <div class="product-grid" id="categoryPageProducts"><div class="loading"><div class="spinner"></div></div></div>
         </div>
     </div>
 
     <script>
-        // =====================================================
-        // CONFIGURATION
-        // =====================================================
         const CONFIG = {
             accessToken: 'EAAMmIb1yWV8BQo2ZCChyp0y9pxHnjdoOT7sZCoQWcGiKvq22QWw2QeRmMTIFPZAtKjT3PR3X7aJb2YYAzWw6CU8YdYZAMQ4VQoaWcZAa97MMuX36EmIlFZBauZBZBBuaZCLM6zuLa0ERwEJh5ZCgiVaIV7pfPwsSzcPQkpYFjT6EAFsK1oJNk3ePB7xIw95Ii0NthE2nUGEwNq',
             pageId: '373134302848785',
             whatsappNumber: '16464097127',
-
             categories: [
                 { name: 'Bridal Collection', albumId: '1520260263436089', icon: '👰' },
                 { name: 'Party Wear', albumId: '1520260906769358', icon: '✨' },
@@ -1302,223 +599,155 @@
                 { name: 'Eid Collection', albumId: '', icon: '🌙' },
                 { name: 'Sale', albumId: '', icon: '🏷️' }
             ],
-
-            albums: {
-                newArrivals: '1520260263436089',
-                bestsellers: '1520260906769358'
-            },
-
-            excludeAlbums: ['Profile pictures', 'Cover photos', 'Timeline Photos', 'Mobile uploads']
+            albums: { newArrivals: '1520260263436089', bestsellers: '1520260906769358', customerGallery: '' }
         };
 
-        // =====================================================
-        // FACEBOOK API HELPERS
-        // =====================================================
+        const WA_SVG = '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>';
+        const ZOOM_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>';
 
-        // Fetch photos from album — gets full caption via 'name' field
         async function fetchAlbumPhotos(albumId, limit = 50) {
             if (!albumId) return [];
-            const url = `https://graph.facebook.com/v24.0/${albumId}/photos?fields=source,name,images,created_time&limit=${limit}&access_token=${CONFIG.accessToken}`;
             try {
-                const res = await fetch(url);
+                const res = await fetch('https://graph.facebook.com/v24.0/' + albumId + '/photos?fields=source,name,images,created_time&limit=' + limit + '&access_token=' + CONFIG.accessToken);
                 const data = await res.json();
-                if (data.error) {
-                    console.error('FB API error:', data.error.message);
-                    return [];
-                }
+                if (data.error) { console.error('FB:', data.error.message); return []; }
                 return data.data || [];
-            } catch (err) {
-                console.error('Fetch error:', err);
-                return [];
-            }
+            } catch (e) { console.error(e); return []; }
         }
 
-        // Get highest quality image from the images array
-        function getBestImage(photo) {
-            if (photo.images && photo.images.length > 0) {
-                // images array is sorted largest first by Facebook
-                return photo.images[0].source;
-            }
-            return photo.source || '';
+        function getBestImage(p) { return (p.images && p.images[0]) ? p.images[0].source : (p.source || ''); }
+
+        function parseCaption(c) {
+            if (!c || !c.trim()) return { price: '', description: '', fullCaption: '' };
+            var f = c.trim();
+            var m = f.match(/\$[\d,]+(?:\.\d{2})?/);
+            return { price: m ? m[0] : '', description: f, fullCaption: f };
         }
 
-        // Parse the full Facebook caption
-        // This now keeps the ENTIRE caption as-is from Facebook
-        function parseCaption(caption) {
-            if (!caption || !caption.trim()) {
-                return { price: '', description: '', fullCaption: '' };
-            }
-
-            const fullCaption = caption.trim();
-
-            // Try to extract a price if one exists
-            const priceMatch = fullCaption.match(/\$[\d,]+(?:\.\d{2})?/);
-            const price = priceMatch ? priceMatch[0] : '';
-
-            // The description is the full caption (we show it all)
-            return {
-                price,
-                description: fullCaption,
-                fullCaption
-            };
+        function makeWALink(cap, price) {
+            var item = cap ? cap.substring(0, 100) : 'this item';
+            var p = price ? ' (' + price + ')' : '';
+            return 'https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent("Hi! I'm interested in: " + item + p + ". Please share details!");
         }
 
-        // Build WhatsApp order link
-        function makeWhatsAppLink(caption, price) {
-            const item = caption ? caption.substring(0, 80) : 'this item';
-            const priceText = price ? ` (${price})` : '';
-            const msg = encodeURIComponent(`Hi! I'm interested in: ${item}${priceText}. Please share details!`);
-            return `https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`;
+        function escapeHtml(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+        function openLightbox(imgUrl, caption, price) {
+            document.getElementById('lbImage').src = imgUrl;
+            document.getElementById('lbPrice').textContent = price || 'Contact for Price';
+            document.getElementById('lbCaption').textContent = caption || '';
+            document.getElementById('lbBuyBtn').href = makeWALink(caption, price);
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            history.pushState({ lightbox: true }, '');
         }
 
-        // =====================================================
-        // CARD BUILDERS
-        // =====================================================
-
-        function buildProductCard(photo, isBestseller = false, badgeText = '') {
-            const { price, description } = parseCaption(photo.name);
-            const imgUrl = getBestImage(photo);
-            const waLink = makeWhatsAppLink(description, price);
-            const priceDisplay = price || 'Contact for Price';
-
-            return `
-                <div class="product-card ${isBestseller ? 'bestseller-card' : ''}">
-                    ${isBestseller ? `<div class="bestseller-badge">${badgeText}</div>` : ''}
-                    <img src="${imgUrl}" alt="${description ? description.substring(0, 60) : 'Trendz Closet'}" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-price">${priceDisplay}</div>
-                        ${description ? `<div class="product-caption">${escapeHtml(description)}</div>` : ''}
-                        <a href="${waLink}" class="buy-btn" target="_blank" onclick="event.stopPropagation();">
-                            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-                            Buy Now
-                        </a>
-                    </div>
-                </div>
-            `;
+        function closeLightbox() {
+            var lb = document.getElementById('lightbox');
+            if (lb.classList.contains('active')) { lb.classList.remove('active'); document.body.style.overflow = ''; }
         }
 
-        function buildCategoryCard(category, coverPhoto, count) {
-            const imgUrl = coverPhoto ? getBestImage(coverPhoto) : 'images/logo.jpg';
-            const hasItems = category.albumId && count > 0;
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+        document.querySelector('.lightbox-image-wrap').addEventListener('click', function(e) { if (e.target === e.currentTarget) closeLightbox(); });
 
-            return `
-                <div class="category-card" 
-                     onclick="${hasItems ? `showCategory('${category.name.replace(/'/g, "\\'")}', '${category.albumId}')` : ''}"
-                     style="${!hasItems ? 'opacity:0.5; cursor:default; filter:grayscale(0.4);' : ''}">
-                    <img src="${imgUrl}" alt="${category.name}" loading="lazy">
-                    <div class="category-icon">${category.icon}</div>
-                    <div class="category-overlay">
-                        <div class="category-name">${category.name}</div>
-                        <div class="category-count">${hasItems ? `${count} Items` : 'Coming Soon'}</div>
-                    </div>
-                </div>
-            `;
+        function buildProductCard(photo, isBs, badge) {
+            var pc = parseCaption(photo.name);
+            var img = getBestImage(photo);
+            var wa = makeWALink(pc.description, pc.price);
+            var pr = pc.price || 'Contact for Price';
+            var sc = pc.description.replace(/'/g, "\\'").replace(/\n/g, "\\n");
+            var sp = pc.price.replace(/'/g, "\\'");
+            return '<div class="product-card' + (isBs ? ' bestseller-card' : '') + '" onclick="openLightbox(\'' + img + "', '" + sc + "', '" + sp + "')\">" +
+                (isBs ? '<div class="bestseller-badge">' + badge + '</div>' : '') +
+                '<img src="' + img + '" alt="' + (pc.description ? escapeHtml(pc.description.substring(0, 60)) : 'Trendz Closet') + '" loading="lazy">' +
+                '<div class="product-info"><div class="product-price">' + pr + '</div>' +
+                (pc.description ? '<div class="product-caption">' + escapeHtml(pc.description) + '</div>' : '') +
+                '<div class="card-actions"><a href="' + wa + '" class="buy-btn" target="_blank" onclick="event.stopPropagation();">' + WA_SVG + ' Buy Now</a>' +
+                '<div class="zoom-btn" onclick="event.stopPropagation(); openLightbox(\'' + img + "', '" + sc + "', '" + sp + "')\">" + ZOOM_SVG + '</div></div></div></div>';
         }
 
-        // Escape HTML to prevent XSS from captions
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+        function buildCategoryCard(cat, cover, count) {
+            var img = cover ? getBestImage(cover) : 'images/logo.jpg';
+            var has = cat.albumId && count > 0;
+            var sn = cat.name.replace(/'/g, "\\'");
+            return '<div class="category-card" onclick="' + (has ? "showCategory('" + sn + "', '" + cat.albumId + "')" : '') + '" style="' + (!has ? 'opacity:0.45;cursor:default;filter:grayscale(0.5);' : '') + '">' +
+                '<img src="' + img + '" alt="' + cat.name + '" loading="lazy">' +
+                '<div class="category-icon">' + cat.icon + '</div>' +
+                '<div class="category-overlay"><div class="category-name">' + cat.name + '</div>' +
+                '<div class="category-count">' + (has ? count + ' Items' : 'Coming Soon') + '</div></div></div>';
         }
-
-        // =====================================================
-        // PAGE LOADERS
-        // =====================================================
 
         async function loadHeroSlider() {
-            const container = document.getElementById('heroSlider');
-            const indicators = document.getElementById('slideIndicators');
-            const photos = await fetchAlbumPhotos(CONFIG.albums.newArrivals, 6);
-
-            if (photos.length === 0) return;
-
-            container.innerHTML = photos.map((p, i) => `
-                <div class="hero-slide ${i === 0 ? 'active' : ''}">
-                    <img src="${getBestImage(p)}" alt="Trendz Closet Collection">
-                </div>
-            `).join('');
-
-            indicators.innerHTML = photos.map((_, i) => `
-                <button class="slide-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})" aria-label="Slide ${i + 1}"></button>
-            `).join('');
-
-            let current = 0;
-            const total = photos.length;
-
-            window.goToSlide = function(index) {
-                const slides = document.querySelectorAll('.hero-slide');
-                const dots = document.querySelectorAll('.slide-dot');
-                slides[current].classList.remove('active');
-                dots[current].classList.remove('active');
-                current = index;
-                slides[current].classList.add('active');
-                dots[current].classList.add('active');
+            var c = document.getElementById('heroSlider');
+            var ind = document.getElementById('slideIndicators');
+            var photos = await fetchAlbumPhotos(CONFIG.albums.newArrivals, 8);
+            if (!photos.length) return;
+            c.innerHTML = photos.map(function(p, i) { return '<div class="hero-slide' + (i === 0 ? ' active' : '') + '"><img src="' + getBestImage(p) + '" alt="Trendz Closet"></div>'; }).join('');
+            ind.innerHTML = photos.map(function(_, i) { return '<button class="slide-dot' + (i === 0 ? ' active' : '') + '" onclick="goToSlide(' + i + ')" aria-label="Slide ' + (i+1) + '"></button>'; }).join('');
+            var current = 0, total = photos.length;
+            window.goToSlide = function(idx) {
+                var s = document.querySelectorAll('.hero-slide'), d = document.querySelectorAll('.slide-dot');
+                s[current].classList.remove('active'); d[current].classList.remove('active');
+                current = idx;
+                s[current].classList.add('active'); d[current].classList.add('active');
             };
-
-            setInterval(() => {
-                const next = (current + 1) % total;
-                window.goToSlide(next);
-            }, 5000);
+            setInterval(function() { goToSlide((current + 1) % total); }, 5000);
         }
 
         async function loadCategories() {
-            const container = document.getElementById('categoryGrid');
-            const cards = [];
-
-            for (const cat of CONFIG.categories) {
-                let cover = null;
-                let count = 0;
-
-                if (cat.albumId) {
-                    const photos = await fetchAlbumPhotos(cat.albumId, 50);
-                    count = photos.length;
-                    cover = photos[0] || null;
-                }
-
+            var c = document.getElementById('categoryGrid'), cards = [];
+            for (var cat of CONFIG.categories) {
+                var cover = null, count = 0;
+                if (cat.albumId) { var photos = await fetchAlbumPhotos(cat.albumId, 50); count = photos.length; cover = photos[0] || null; }
                 cards.push(buildCategoryCard(cat, cover, count));
             }
-
-            container.innerHTML = cards.join('') || '<div class="empty-state"><p>Categories coming soon...</p></div>';
+            c.innerHTML = cards.join('') || '<div class="empty-state"><p>Categories coming soon...</p></div>';
         }
 
         async function loadNewArrivals() {
-            const container = document.getElementById('newArrivalsGrid');
-            const photos = await fetchAlbumPhotos(CONFIG.albums.newArrivals, 8);
-
-            container.innerHTML = photos.length > 0
-                ? photos.map(p => buildProductCard(p)).join('')
-                : '<div class="empty-state"><p>New arrivals coming soon...</p></div>';
+            var c = document.getElementById('newArrivalsGrid');
+            var photos = await fetchAlbumPhotos(CONFIG.albums.newArrivals, 8);
+            c.innerHTML = photos.length ? photos.map(function(p) { return buildProductCard(p, false, ''); }).join('') : '<div class="empty-state"><p>New arrivals coming soon...</p></div>';
         }
 
         async function loadBestsellers() {
-            const container = document.getElementById('bestsellersGrid');
-            const photos = await fetchAlbumPhotos(CONFIG.albums.bestsellers, 3);
-
-            container.innerHTML = photos.length > 0
-                ? photos.map((p, i) => buildProductCard(p, true, i === 0 ? 'Top Pick' : 'Bestseller')).join('')
-                : '<div class="empty-state"><p>Bestsellers coming soon...</p></div>';
+            var c = document.getElementById('bestsellersGrid');
+            var photos = await fetchAlbumPhotos(CONFIG.albums.bestsellers, 3);
+            c.innerHTML = photos.length ? photos.map(function(p, i) { return buildProductCard(p, true, i === 0 ? 'Top Pick' : 'Bestseller'); }).join('') : '<div class="empty-state"><p>Bestsellers coming soon...</p></div>';
         }
 
-        // =====================================================
-        // NAVIGATION
-        // =====================================================
+        async function loadCustomerGallery() {
+            var c = document.getElementById('customerGallery');
+            if (CONFIG.albums.customerGallery) {
+                var photos = await fetchAlbumPhotos(CONFIG.albums.customerGallery, 8);
+                if (photos.length) {
+                    c.innerHTML = photos.map(function(p) {
+                        var img = getBestImage(p), cap = p.name || '', lines = cap.split('\n');
+                        return '<div class="gallery-card" onclick="openLightbox(\'' + img + "', '" + cap.replace(/'/g, "\\'").replace(/\n/g, "\\n") + "', '')\">" +
+                            '<img src="' + img + '" alt="Customer photo" loading="lazy">' +
+                            '<div class="gallery-overlay">' + (lines[0] ? '<div class="gallery-name">' + escapeHtml(lines[0]) + '</div>' : '') +
+                            (lines[1] ? '<div class="gallery-location">' + escapeHtml(lines[1]) + '</div>' : '') + '</div></div>';
+                    }).join('');
+                    return;
+                }
+            }
+            c.innerHTML = '<div class="gallery-empty"><p>Love your Trendz Closet outfit? We\'d love to feature you! Send us a photo of you wearing your favorite piece and become part of our gallery.</p><a href="https://wa.me/' + CONFIG.whatsappNumber + '?text=Hi! I\'d love to share a photo for your customer gallery!" class="gallery-cta-btn" target="_blank">' + WA_SVG + ' Share Your Photo</a></div>';
+        }
 
-        async function showCategory(name, albumId) {
+        var currentView = 'home';
+
+        function showCategory(name, albumId) {
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('categoryPage').classList.add('active');
             document.getElementById('categoryPageTitle').textContent = name;
-
-            const container = document.getElementById('categoryPageProducts');
-            container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-
-            const photos = await fetchAlbumPhotos(albumId, 100);
-            document.getElementById('categoryPageCount').textContent = `${photos.length} Items`;
-
-            container.innerHTML = photos.length > 0
-                ? photos.map(p => buildProductCard(p)).join('')
-                : '<div class="empty-state"><p>No items in this category yet.</p></div>';
-
+            currentView = 'category';
+            history.pushState({ page: 'category', name: name, albumId: albumId }, '', '#category-' + albumId);
+            var c = document.getElementById('categoryPageProducts');
+            c.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            fetchAlbumPhotos(albumId, 100).then(function(photos) {
+                document.getElementById('categoryPageCount').textContent = photos.length + ' Items';
+                c.innerHTML = photos.length ? photos.map(function(p) { return buildProductCard(p, false, ''); }).join('') : '<div class="empty-state"><p>No items in this category yet.</p></div>';
+            });
             window.scrollTo({ top: 0, behavior: 'smooth' });
             closeMobileNav();
         }
@@ -1526,17 +755,35 @@
         function showHome() {
             document.getElementById('categoryPage').classList.remove('active');
             document.getElementById('homePage').style.display = 'block';
+            currentView = 'home';
+            history.pushState({ page: 'home' }, '', window.location.pathname);
             window.scrollTo({ top: 0, behavior: 'smooth' });
             closeMobileNav();
         }
 
-        function toggleMobileNav() {
-            const nav = document.getElementById('mobileNav');
-            const btn = document.getElementById('mobileMenuBtn');
-            nav.classList.toggle('active');
-            btn.classList.toggle('active');
+        function navigateBack() {
+            if (currentView === 'category') { showHome(); } else { history.back(); }
+        }
 
-            // Lock body scroll when menu is open
+        window.addEventListener('popstate', function(e) {
+            var lb = document.getElementById('lightbox');
+            if (lb.classList.contains('active')) { lb.classList.remove('active'); document.body.style.overflow = ''; return; }
+            if (e.state && e.state.page === 'category') {
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('categoryPage').classList.add('active');
+                currentView = 'category';
+            } else {
+                document.getElementById('categoryPage').classList.remove('active');
+                document.getElementById('homePage').style.display = 'block';
+                currentView = 'home';
+            }
+        });
+
+        history.replaceState({ page: 'home' }, '', window.location.pathname);
+
+        function toggleMobileNav() {
+            var nav = document.getElementById('mobileNav'), btn = document.getElementById('mobileMenuBtn');
+            nav.classList.toggle('active'); btn.classList.toggle('active');
             document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
         }
 
@@ -1546,24 +793,10 @@
             document.body.style.overflow = '';
         }
 
-        // Navbar shrink on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
+        window.addEventListener('scroll', function() { document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50); });
 
-        // =====================================================
-        // INITIALIZE
-        // =====================================================
-        document.addEventListener('DOMContentLoaded', () => {
-            loadHeroSlider();
-            loadCategories();
-            loadNewArrivals();
-            loadBestsellers();
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHeroSlider(); loadCategories(); loadNewArrivals(); loadBestsellers(); loadCustomerGallery();
         });
     </script>
 </body>
