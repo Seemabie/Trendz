@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookbook · Trendz Closet | Customer Gallery</title>
+    <meta name="description" content="Real Trendz Closet brides and clients in their pieces. Mehndis, walimas, Eid celebrations, and everyday moments in our designs.">
+    <meta name="theme-color" content="#08060A">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .masonry-lg {
+            columns: 4;
+            column-gap: 1.2rem;
+        }
+        .masonry-lg .masonry-item {
+            margin-bottom: 1.2rem;
+            break-inside: avoid;
+        }
+        @media (max-width: 1200px) { .masonry-lg { columns: 3; } }
+        @media (max-width: 768px) { .masonry-lg { columns: 2; column-gap: 0.7rem; } .masonry-lg .masonry-item { margin-bottom: 0.7rem; } }
+        @media (max-width: 480px) { .masonry-lg { columns: 1; } }
+
+        .share-strip {
+            background:
+                radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,163,94,0.08), transparent 70%),
+                linear-gradient(180deg, var(--ink), var(--obsidian));
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--line-light);
+            border-bottom: 1px solid var(--line-light);
+            position: relative;
+            overflow: hidden;
+        }
+        .share-strip::before, .share-strip::after {
+            content: '';
+            position: absolute;
+            width: 240px; height: 240px;
+            background: radial-gradient(circle, var(--gold-glow), transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            pointer-events: none;
+        }
+        .share-strip::before { top: -100px; left: -50px; }
+        .share-strip::after { bottom: -100px; right: -50px; }
+        .share-strip > * { position: relative; }
+        .share-strip h3 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            color: var(--gold-pale);
+            margin-bottom: 0.6rem;
+        }
+        .share-strip h3 .italic {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--gold);
+        }
+        .share-strip p { color: var(--text-mid); margin-bottom: 1.8rem; font-style: italic; font-family: var(--font-serif); font-size: 1.05rem; }
+        .share-tag {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            color: var(--gold);
+            letter-spacing: 0.22em;
+            border: 1px solid var(--gold);
+            padding: 0.85rem 2.2rem;
+            background: rgba(8,6,10,0.5);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 30px var(--gold-glow);
+            transition: all 0.4s var(--ease);
+        }
+        .share-tag:hover {
+            background: var(--gold);
+            color: var(--night);
+            box-shadow: 0 0 50px var(--gold-glow-strong);
+        }
+    </style>
+</head>
+<body>
+    <div id="announce"></div>
+    <div id="mainNav"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Lookbook</span></div>
+                <h1>The <span class="italic">Lookbook</span></h1>
+                <p>Real women in real Trendz pieces. Brides on their walima night, sisters dancing at a mehndi, mothers at Eid lunches. This is the gallery our customers built.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-paper">
+        <div class="container">
+            <div class="section-head center">
+                <span class="eyebrow center">No. 01 · The Gallery</span>
+                <h2>Moments in <span class="italic">Trendz</span></h2>
+                <p>Tap any image for the story behind it. These photos are shared with our customers' kind permission.</p>
+            </div>
+            <div class="masonry masonry-lg" id="lookbookGrid">
+                <div class="loading-state" style="grid-column: 1 / -1;">
+                    <div class="spinner"></div>
+                    <p>Loading the gallery…</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="share-strip">
+        <span class="eyebrow center" style="display:inline-block; margin-bottom: 1.2rem;">Tag Us</span>
+        <h3>Wearing your <span class="italic">Trendz?</span></h3>
+        <p>Share your moment and you might find yourself in the gallery.</p>
+        <span class="share-tag">#TRENDZCLOSET</span>
+    </section>
+
+    <section class="section bg-bone">
+        <div class="container">
+            <div class="editorial-split">
+                <div class="editorial-image reveal">
+                    <img src="images/643445743_1543782764417172_204703847118664507_n.jpg" alt="Trendz Closet customer">
+                    <div class="pin">From our brides</div>
+                </div>
+                <div class="editorial-text reveal delay-1">
+                    <span class="number">— the trendz family</span>
+                    <h3>We do not <span class="italic">sell</span> dresses. We dress <span class="italic">families.</span></h3>
+                    <p>Many of our customers come back for their sister's wedding, then their cousin's mehndi, then their own daughter's first Eid. We remember their measurements, their favorite necklines, the silks that worked the last time.</p>
+                    <p>If you have worn a Trendz piece before and the photo lives on your phone, we would love to add it here. Send it to us on WhatsApp. We will ask permission, never assume it.</p>
+                    <a href="https://wa.me/16464097127?text=Hi%20Trendz,%20I%27d%20love%20to%20share%20a%20photo%20for%20your%20lookbook." class="btn btn-primary" target="_blank" rel="noopener">
+                        Share Your Photo
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-strip">
+        <div class="cta-strip-inner reveal">
+            <span class="eyebrow center" style="color: var(--gold); margin-bottom: 1.2rem; display: inline-block;">Find Your Piece</span>
+            <h2>Saw something you <span class="italic">loved?</span></h2>
+            <p>Many of these pieces are still available, others can be commissioned in your size and palette. Message us with the photo and we will track it down.</p>
+            <a href="https://wa.me/16464097127?text=Hi%20Trendz,%20I%20saw%20a%20piece%20in%20your%20lookbook." class="btn btn-gold" target="_blank" rel="noopener">
+                Ask About a Piece
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <div id="mainFooter"></div>
+    <div id="floatingBtns"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+        buildNav('lookbook');
+
+        const LOOK_STATIC = [
+            { img: 'images/631510067_1530385762423539_903097457771850577_n.jpg', cap: 'Saniya', sub: 'Walima · Queens, NY' },
+            { img: 'images/641969104_1543783071083808_199545175156685455_n.jpg', cap: 'Ayesha', sub: 'Mehndi · Long Island' },
+            { img: 'images/643445743_1543782764417172_204703847118664507_n.jpg', cap: 'Zainab', sub: 'Eid 2024' },
+            { img: 'images/643744918_1543782284417220_945351748047902566_n.jpg', cap: 'Priya', sub: 'Engagement · NJ' },
+            { img: 'images/643762611_1543782614417187_2836942688763921434_n.jpg', cap: 'Sara', sub: 'Walima · Brooklyn' },
+            { img: 'images/bridal-gold.jpg', cap: 'Aisha', sub: 'Nikkah · Queens' },
+            { img: 'images/burgundy-velvet.jpg', cap: 'Mariam', sub: 'Reception · Manhattan' },
+            { img: 'images/pink-embroidered.jpg', cap: 'Hina', sub: 'Mehndi · 2024' },
+            { img: 'images/teal-orange.jpg', cap: 'Noor', sub: 'Eid · Family lunch' },
+            { img: 'images/royal-blue.jpg', cap: 'Fatima', sub: 'Engagement · Bronx' },
+            { img: 'images/yellow-maroon.jpg', cap: 'Sana', sub: 'Mayoun · Yonkers' },
+            { img: 'images/navy-silver.jpg', cap: 'Rabia', sub: 'Sangeet · NJ' },
+            { img: 'images/ombre-gold.jpg', cap: 'Hira', sub: 'Walima · Brooklyn' },
+            { img: 'images/purple-magenta.jpg', cap: 'Bushra', sub: 'Party · Long Island' },
+            { img: 'images/turquoise-silver.jpg', cap: 'Mehreen', sub: 'Family wedding · 2024' },
+            { img: 'images/rust-orange.jpg', cap: 'Anila', sub: 'Walima · Queens' },
+            { img: 'images/olive-festive.jpg', cap: 'Sadia', sub: 'Eid 2025' },
+            { img: 'images/beige-green.jpg', cap: 'Tahira', sub: 'Mehndi · NJ' },
+            { img: 'images/grey-pink-floral.jpg', cap: 'Komal', sub: 'Family dinner' },
+            { img: 'images/navy-gold.jpg', cap: 'Faiza', sub: 'Reception · NYC' }
+        ];
+
+        async function loadLookbook() {
+            const grid = document.getElementById('lookbookGrid');
+            const photos = await fetchAlbumPhotos(CONFIG.albums.customerGallery, 30);
+            let items = [];
+            if (photos && photos.length) {
+                items = photos.map(p => ({ img: p.images[0].source, cap: 'A Trendz Customer', sub: 'Shared with permission' }));
+            } else {
+                items = LOOK_STATIC;
+            }
+            grid.innerHTML = items.map((it, i) => `
+                <div class="masonry-item reveal${i % 3 === 1 ? ' delay-1' : i % 3 === 2 ? ' delay-2' : ''}">
+                    <img src="${it.img}" alt="${it.cap}" loading="lazy">
+                    <div class="masonry-caption">
+                        <strong>${it.cap}</strong>
+                        <span>${it.sub}</span>
+                    </div>
+                </div>
+            `).join('');
+            observeNewReveals();
+        }
+
+        loadLookbook();
+    </script>
+</body>
+</html>

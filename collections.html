@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections · Trendz Closet | Pakistani & Indian Designer Fashion</title>
+    <meta name="description" content="Browse the complete Trendz Closet collections. Bridal, Party Wear, Sarees, Casual Wear, Eid Collection, and Sale.">
+    <meta name="theme-color" content="#08060A">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Collection-specific filter bar */
+        .filter-bar {
+            background: rgba(8,6,10,0.85);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border-bottom: 1px solid var(--line-light);
+            padding: 1.4rem 4%;
+            position: sticky;
+            top: var(--nav-h-scrolled);
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .filter-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .filter-chip {
+            padding: 0.6rem 1.3rem;
+            border: 1px solid var(--line-light);
+            background: transparent;
+            font-family: var(--font-sans);
+            font-size: 0.66rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.4s var(--ease);
+            border-radius: 99px;
+        }
+        .filter-chip:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,163,94,0.06); }
+        .filter-chip.active {
+            background: linear-gradient(120deg, var(--gold), var(--gold-bright));
+            color: var(--night);
+            border-color: var(--gold);
+            box-shadow: 0 8px 24px -10px var(--gold-glow-strong);
+        }
+        .filter-meta {
+            font-size: 0.7rem;
+            letter-spacing: 0.28em;
+            color: var(--gold);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .collection-section { padding: 5rem 0 6rem; position: relative; }
+        .collection-section:not(:first-of-type) { border-top: 1px solid var(--line); }
+        .collection-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.4;
+        }
+        .coll-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 4%;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .coll-header h2 {
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            color: var(--gold-pale);
+            line-height: 1;
+        }
+        .coll-header h2 .italic { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+        .coll-header .meta {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--text-mid);
+            font-size: 1.1rem;
+        }
+        .coll-header .eyebrow { color: var(--gold); }
+    </style>
+</head>
+<body>
+    <div id="announce" class="announce-bar"></div>
+    <nav id="mainNav" class="nav"></nav>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="page-header-inner">
+            <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Collections</span></div>
+            <h1>The <span class="italic">Collections.</span></h1>
+            <p>Six houses, each its own world. Browse the full archive, or jump straight to your occasion.</p>
+        </div>
+    </header>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar" id="filterBar">
+        <div class="filter-chips" id="filterChips">
+            <button class="filter-chip active" data-cat="all">All Pieces</button>
+            <button class="filter-chip" data-cat="Bridal">Bridal</button>
+            <button class="filter-chip" data-cat="Party Wear">Party Wear</button>
+            <button class="filter-chip" data-cat="Casual Wear">Casual Wear</button>
+            <button class="filter-chip" data-cat="Sarees">Sarees</button>
+            <button class="filter-chip" data-cat="Eid Collection">Eid</button>
+            <button class="filter-chip" data-cat="Sale">Sale</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <span class="filter-meta" id="filterCount">Loading...</span>
+        </div>
+    </div>
+
+    <!-- COLLECTIONS -->
+    <main id="collectionsMain">
+        <div id="collectionsContainer">
+            <div class="loading-state"><div class="spinner"></div><p>Curating the Atelier</p></div>
+        </div>
+    </main>
+
+    <!-- CTA STRIP -->
+    <section class="cta-strip">
+        <div class="cta-strip-inner reveal">
+            <p class="eyebrow center" style="color: var(--gold); margin-bottom: 1.2rem;">Can't Find Your Piece?</p>
+            <h2>We can <span class="italic">make it</span> for you.</h2>
+            <p>Every piece in this archive can be modified, restitched, or recreated entirely. Bring us a reference, and we will commission it.</p>
+            <a href="bespoke.html" class="btn btn-gold">Begin a Commission</a>
+        </div>
+    </section>
+
+    <footer id="mainFooter"></footer>
+    <div id="floatingBtns" class="floating"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+        buildNav('collections');
+
+        // Static fallback content per category
+        const STATIC = {
+            'Bridal': [
+                { name: 'Bridal Lehenga in Antique Gold & Ivory\n$2,450', img: 'images/bridal-gold.jpg' },
+                { name: 'Pink Embroidered Sharara Bridal Set\n$1,895', img: 'images/pink-embroidered.jpg' },
+                { name: 'Burgundy Velvet Bridal Anarkali\n$1,650', img: 'images/burgundy-velvet.jpg' },
+                { name: 'Ombre Champagne Reception Gown\n$1,250', img: 'images/ombre-gold.jpg' }
+            ],
+            'Party Wear': [
+                { name: 'Midnight Lehenga in Sapphire & Antique Gold\n$1,485', img: 'images/navy-gold.jpg' },
+                { name: 'Purple & Magenta Embellished Sharara\n$895', img: 'images/purple-magenta.jpg' },
+                { name: 'Royal Blue Mirror Work Kameez\n$785', img: 'images/royal-blue.jpg' },
+                { name: 'Navy & Silver Statement Set\n$925', img: 'images/navy-silver.jpg' },
+                { name: 'Yellow & Maroon Festive Lehenga\n$845', img: 'images/yellow-maroon.jpg' }
+            ],
+            'Casual Wear': [
+                { name: 'Beige & Sage Casual Lawn Suit\n$345', img: 'images/beige-green.jpg' },
+                { name: 'Grey Pink Floral Day Set\n$295', img: 'images/grey-pink-floral.jpg' }
+            ],
+            'Sarees': [
+                { name: 'Rust Saree in Heritage Silk\n$675', img: 'images/rust-orange.jpg' },
+                { name: 'Turquoise Silk Saree with Silver Border\n$745', img: 'images/turquoise-silver.jpg' },
+                { name: 'Teal & Orange Block Print Saree\n$525', img: 'images/teal-orange.jpg' }
+            ],
+            'Eid Collection': [
+                { name: 'Olive & Gold Festive Kurta Set\n$595', img: 'images/olive-festive.jpg' },
+                { name: 'Yellow & Maroon Festive Lehenga\n$845', img: 'images/yellow-maroon.jpg' }
+            ],
+            'Sale': []
+        };
+
+        const STORIES = {
+            'Bridal': 'Our most treasured house. Lehengas, anarkalis, and gowns from the master ateliers of Lahore and Delhi, made for the woman who arrives.',
+            'Party Wear': 'For weddings, receptions, sangeets, and the nights when you choose to be looked at.',
+            'Casual Wear': 'Lawn, linen, cotton silk. The pieces you reach for on a Sunday in Brooklyn or a brunch in Westchester.',
+            'Sarees': 'Six yards of poetry. From Banaras to Bengaluru, hand-loomed and hand-finished.',
+            'Eid Collection': 'A small, considered drop released twice a year, for the two Eids and everything in between.',
+            'Sale': 'A rotating selection of last-season favorites at reduced atelier pricing. Limited pieces, no restocks.'
+        };
+
+        let allProducts = []; // { cat, photo, isStatic }
+        let activeFilter = 'all';
+
+        function renderStaticCard(p, cat) {
+            const price = (p.name.match(/\$[\d,]+/) || ['Contact for Price'])[0];
+            const title = p.name.split('\n')[0];
+            const titleE = title.replace(/'/g, "\\'");
+            const priceE = price.replace(/'/g, "\\'").replace(/\$/g, '\\$');
+            return `<div class="product-card reveal" onclick="openLightbox('${p.img}', '${titleE}', '${priceE}')">
+                <div class="product-image-wrap">
+                    <img src="${p.img}" alt="${title}" loading="lazy">
+                    <div class="product-quick">
+                        <a href="https://wa.me/16464097127?text=${encodeURIComponent('Hello, I am interested in: ' + title)}" target="_blank" class="quick-btn" onclick="event.stopPropagation();">${ICONS.wa} Inquire</a>
+                        <button class="quick-btn icon-only" onclick="event.stopPropagation(); openLightbox('${p.img}', '${titleE}', '${priceE}')" aria-label="Quick view">${ICONS.search}</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">${title}</div>
+                    <div class="product-meta">
+                        <div class="product-price">${price}</div>
+                        <div class="product-cat">${cat}</div>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        async function loadCollections() {
+            const container = document.getElementById('collectionsContainer');
+            const cats = CONFIG.categories;
+            let total = 0;
+
+            // Try API for each category
+            const results = [];
+            for (const cat of cats) {
+                let photos = [];
+                if (cat.albumId) {
+                    try {
+                        photos = await fetchAlbumPhotos(cat.albumId, 30);
+                    } catch (e) {}
+                }
+                // Use API if available, otherwise static
+                if (photos.length) {
+                    results.push({ cat: cat.name, photos, isStatic: false });
+                    total += photos.length;
+                } else if (STATIC[cat.name] && STATIC[cat.name].length) {
+                    results.push({ cat: cat.name, photos: STATIC[cat.name], isStatic: true });
+                    total += STATIC[cat.name].length;
+                }
+            }
+
+            document.getElementById('filterCount').textContent = `${total} pieces in the atelier`;
+
+            container.innerHTML = results.map(r => {
+                const story = STORIES[r.cat] || '';
+                const cards = r.isStatic
+                    ? r.photos.map(p => renderStaticCard(p, r.cat)).join('')
+                    : r.photos.map(p => buildProductCard(p, { category: r.cat })).join('');
+
+                return `<section class="collection-section" data-cat="${r.cat}">
+                    <div class="coll-header">
+                        <div>
+                            <p class="eyebrow" style="margin-bottom: 1rem;">${r.cat}</p>
+                            <h2>${r.cat === 'Bridal' ? 'Bridal' : r.cat.split(' ')[0]} <span class="italic">${r.cat === 'Bridal' ? 'Couture' : (r.cat.split(' ').slice(1).join(' ') || 'Edit')}</span></h2>
+                            <p class="meta" style="margin-top: 0.8rem; max-width: 500px;">${story}</p>
+                        </div>
+                        <div class="meta">${r.photos.length} pieces</div>
+                    </div>
+                    <div class="products">${cards}</div>
+                </section>`;
+            }).join('');
+
+            // Initial filter (from URL)
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialCat = urlParams.get('cat');
+            if (initialCat) {
+                const chip = document.querySelector(`.filter-chip[data-cat="${initialCat}"]`);
+                if (chip) {
+                    chip.click();
+                    setTimeout(() => {
+                        const section = document.querySelector(`.collection-section[data-cat="${initialCat}"]`);
+                        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+
+            observeNewReveals();
+        }
+
+        // Filter
+        document.getElementById('filterChips').addEventListener('click', (e) => {
+            const chip = e.target.closest('.filter-chip');
+            if (!chip) return;
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            activeFilter = chip.dataset.cat;
+            document.querySelectorAll('.collection-section').forEach(s => {
+                s.style.display = (activeFilter === 'all' || s.dataset.cat === activeFilter) ? '' : 'none';
+            });
+        });
+
+        // Handle hash
+        if (window.location.hash) {
+            const map = { '#bridal': 'Bridal', '#party': 'Party Wear', '#casual': 'Casual Wear', '#sarees': 'Sarees', '#eid': 'Eid Collection', '#sale': 'Sale' };
+            const cat = map[window.location.hash];
+            if (cat) {
+                setTimeout(() => {
+                    const chip = document.querySelector(`.filter-chip[data-cat="${cat}"]`);
+                    if (chip) chip.click();
+                }, 500);
+            }
+        }
+
+        loadCollections();
+    </script>
+</body>
+</html>

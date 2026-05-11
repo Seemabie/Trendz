@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit · Trendz Closet | Queens, New York</title>
+    <meta name="description" content="Visit the Trendz Closet atelier in Queens, New York. Address, hours, directions, and how to reach us by WhatsApp or phone.">
+    <meta name="theme-color" content="#08060A">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        @media (max-width: 1000px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+        .contact-info h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+            color: var(--gold-pale);
+            line-height: 1;
+            margin: 1rem 0 2rem;
+        }
+        .contact-detail {
+            padding: 1.6rem 0;
+            border-top: 1px solid var(--line);
+        }
+        .contact-detail:last-child { border-bottom: 1px solid var(--line); }
+        .contact-detail h4 {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+        }
+        .contact-detail p {
+            font-family: var(--font-serif);
+            color: var(--text);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .contact-detail a {
+            color: var(--gold-pale);
+            border-bottom: 1px solid var(--gold);
+            transition: color 0.3s var(--ease);
+        }
+        .contact-detail a:hover { color: var(--gold); }
+
+        .contact-form { padding: 2rem; background: rgba(14,11,18,0.7); border: 1px solid var(--line-light); backdrop-filter: blur(8px); }
+        .contact-form h2 { color: var(--gold-pale) !important; }
+        .form-row { margin-bottom: 1.2rem; }
+        .form-row label {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.66rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+        }
+        .form-row-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 600px) { .form-row-split { grid-template-columns: 1fr; } }
+
+        .visit-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--line-light);
+            border-bottom: 1px solid var(--line-light);
+            margin-top: 5rem;
+            background: var(--ink);
+        }
+        .visit-card {
+            padding: 3.5rem 2.5rem;
+            border-right: 1px solid var(--line);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.5s var(--ease);
+        }
+        .visit-card:last-child { border-right: none; }
+        .visit-card:hover { background: var(--plum); }
+        .visit-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 90% 70% at 50% 100%, var(--gold-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s var(--ease);
+            pointer-events: none;
+        }
+        .visit-card:hover::before { opacity: 0.7; }
+        .visit-card > * { position: relative; }
+        .visit-card .icon {
+            width: 44px;
+            height: 44px;
+            margin: 0 auto 1.5rem;
+            color: var(--gold);
+            transition: transform 0.5s var(--ease);
+        }
+        .visit-card:hover .icon { transform: translateY(-3px); }
+        .visit-card .icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.2; }
+        .visit-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            color: var(--gold-pale);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.04em;
+        }
+        .visit-card p {
+            color: var(--text-mid);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .map-wrap {
+            margin-top: 4rem;
+            border: 1px solid var(--line-light);
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 21/9;
+            box-shadow: var(--shadow-deep);
+        }
+        .map-wrap iframe {
+            width: 100%; height: 100%; border: 0;
+            filter: invert(0.92) hue-rotate(180deg) saturate(0.5) brightness(0.95);
+        }
+
+        @media (max-width: 900px) {
+            .visit-cards { grid-template-columns: 1fr; }
+            .visit-card { border-right: none; border-bottom: 1px solid var(--line); }
+            .visit-card:last-child { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+    <div id="announce"></div>
+    <div id="mainNav"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Visit</span></div>
+                <h1>Visit the <span class="italic">atelier</span></h1>
+                <p>117th Avenue, Jamaica, Queens. The chai is always on. Appointments are welcome but not required.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-paper">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <span class="eyebrow">No. 01 · Find Us</span>
+                    <h2>The <span class="italic">atelier</span></h2>
+                    <div class="contact-detail">
+                        <h4>Address</h4>
+                        <p><a href="https://maps.google.com/?q=170-07+118th+Avenue+Jamaica+NY+11434" target="_blank" rel="noopener">170-07 118th Avenue<br>Jamaica, NY 11434</a></p>
+                    </div>
+                    <div class="contact-detail">
+                        <h4>Hours</h4>
+                        <p>Monday to Saturday · 11:00 to 19:00<br>Sunday · 12:00 to 17:00<br><em style="font-family: var(--font-serif); color: var(--text-soft);">Bridal consultations by appointment</em></p>
+                    </div>
+                    <div class="contact-detail">
+                        <h4>WhatsApp</h4>
+                        <p><a href="https://wa.me/16464097127" target="_blank" rel="noopener">+1 (646) 409 7127</a></p>
+                    </div>
+                    <div class="contact-detail">
+                        <h4>How to Reach Us</h4>
+                        <p>The fastest way is WhatsApp. We answer same day, often within an hour. For bridal consultations, please mention your wedding date so we can prepare swatches before you arrive.</p>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal delay-1">
+                    <span class="eyebrow">No. 02 · Send a Note</span>
+                    <h2 style="font-family: var(--font-display); font-size: 2.4rem; line-height: 1.1; margin: 1rem 0 2rem;">Or write to <span class="italic">us</span> here</h2>
+                    <div class="form-row-split">
+                        <div class="form-row">
+                            <label>Name</label>
+                            <input type="text" id="ctName" placeholder="Your name">
+                        </div>
+                        <div class="form-row">
+                            <label>Phone</label>
+                            <input type="tel" id="ctPhone" placeholder="+1 ...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label>What are you looking for?</label>
+                        <select id="ctTopic">
+                            <option>Bridal consultation</option>
+                            <option>Bespoke commission</option>
+                            <option>Question about a piece I saw</option>
+                            <option>Alterations on something I already own</option>
+                            <option>Just want to visit</option>
+                            <option>Something else</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label>Your message</label>
+                        <textarea id="ctMsg" rows="5" placeholder="Tell us as much or as little as you like…"></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="sendContact()" style="width: 100%; justify-content: center;">
+                        Send via WhatsApp
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="visit-cards">
+                <div class="visit-card reveal">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+                    </div>
+                    <h4>By Car</h4>
+                    <p>Free street parking on 118th Ave. Limited paid lot two blocks south on Liberty Ave.</p>
+                </div>
+                <div class="visit-card reveal delay-1">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M8 16h.01M16 16h.01"/></svg>
+                    </div>
+                    <h4>By Subway</h4>
+                    <p>E or J train to Jamaica Center, then five minutes by car or local bus. We will Uber you back to the train after a fitting.</p>
+                </div>
+                <div class="visit-card reveal delay-2">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 16.5c0 2.485-2.015 4.5-4.5 4.5S12 18.985 12 16.5 14.015 12 16.5 12 21 14.015 21 16.5z"/><path d="M3 12V7a2 2 0 012-2h14a2 2 0 012 2v5M3 12l9-7 9 7M3 12h12"/></svg>
+                    </div>
+                    <h4>From JFK</h4>
+                    <p>Eight minutes by car. Many of our out-of-town brides fly in for a fitting weekend. We can arrange recommended nearby hotels.</p>
+                </div>
+            </div>
+
+            <div class="map-wrap reveal">
+                <iframe src="https://maps.google.com/maps?q=170-07+118th+Avenue+Jamaica+NY+11434&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Trendz Closet location"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-bone">
+        <div class="container">
+            <div class="section-head center">
+                <span class="eyebrow center">No. 03 · Before You Visit</span>
+                <h2>Quick <span class="italic">questions</span></h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-q">Do I need an appointment?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Not for browsing. For bridal consultations or bespoke discussions we strongly recommend an appointment so we can have your designer's full attention and the right swatches ready.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">Can I bring family?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Please do. Mothers, sisters, aunts, friends with opinions, all welcome. We have a sitting area with chai and small plates for longer consultations.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">What is your return policy?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Ready-to-wear pieces can be returned within seven days in original condition, unworn, with tags. Bespoke and altered pieces are final sale because they are made for you.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">Do you offer alterations on pieces I already own?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Yes. We alter and restore South Asian formalwear from any designer. Pricing depends on the work involved. Bring it in or send photos on WhatsApp for a quote.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">Can I see a piece online before visiting?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Yes. Browse our collections page or our Facebook gallery. Message us the piece you are interested in and we will confirm availability, your size, and timing before you make the trip.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">Do you do video consultations?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Absolutely. We have brides across the country and book WhatsApp video consultations daily. Bring a tape measure and good light. We handle the rest.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="mainFooter"></div>
+    <div id="floatingBtns"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+        buildNav('contact');
+
+        function sendContact() {
+            const name = (document.getElementById('ctName').value || '').trim();
+            const phone = (document.getElementById('ctPhone').value || '').trim();
+            const topic = document.getElementById('ctTopic').value;
+            const msg = (document.getElementById('ctMsg').value || '').trim();
+
+            if (!name || !msg) {
+                alert('Please share your name and a short message.');
+                return;
+            }
+
+            let txt = `Hi Trendz,%0A%0A`;
+            txt += `Name: ${encodeURIComponent(name)}%0A`;
+            if (phone) txt += `Phone: ${encodeURIComponent(phone)}%0A`;
+            txt += `Topic: ${encodeURIComponent(topic)}%0A%0A`;
+            txt += `${encodeURIComponent(msg)}`;
+
+            window.open('https://wa.me/16464097127?text=' + txt, '_blank');
+        }
+    </script>
+</body>
+</html>

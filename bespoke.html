@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bespoke · Trendz Closet | The Atelier</title>
+    <meta name="description" content="Commission a one-of-one piece with the Trendz Closet atelier. From first sketch to final fitting, designed and embroidered by hand.">
+    <meta name="theme-color" content="#08060A">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--line-light);
+            border-bottom: 1px solid var(--line-light);
+            background: var(--ink);
+            position: relative;
+        }
+        .process-step {
+            padding: 4rem 2.5rem;
+            border-right: 1px solid var(--line);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.6s var(--ease);
+        }
+        .process-step:last-child { border-right: none; }
+        .process-step:hover { background: var(--plum); }
+        .process-step::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 100%, var(--gold-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s var(--ease);
+            pointer-events: none;
+        }
+        .process-step:hover::before { opacity: 0.85; }
+        .process-step > * { position: relative; }
+        .process-num {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            color: var(--gold);
+            margin-bottom: 1.4rem;
+            letter-spacing: 0.18em;
+        }
+        .process-step h4 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--gold-pale);
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+        .process-step p {
+            color: var(--text-mid);
+            line-height: 1.75;
+            font-size: 0.94rem;
+        }
+        @media (max-width: 1000px) {
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-step:nth-child(2) { border-right: none; }
+            .process-step:nth-child(1), .process-step:nth-child(2) { border-bottom: 1px solid var(--line); }
+        }
+        @media (max-width: 600px) {
+            .process-grid { grid-template-columns: 1fr; }
+            .process-step { border-right: none; border-bottom: 1px solid var(--line); }
+            .process-step:last-child { border-bottom: none; }
+        }
+
+        .contact-form { padding: 2.5rem; background: rgba(14,11,18,0.7); border: 1px solid var(--line-light); backdrop-filter: blur(8px); }
+        .form-row { margin-bottom: 1.2rem; }
+        .form-row label {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.66rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+        }
+        .form-row-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 600px) { .form-row-split { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="announce"></div>
+    <div id="mainNav"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Bespoke</span></div>
+                <h1>The <span class="italic">Atelier</span></h1>
+                <p>A garment made for one woman, by hand, with patience. The Trendz bespoke service for brides, mothers of the bride, and clients who refuse to wear what everyone else is wearing.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-paper">
+        <div class="container">
+            <div class="editorial-split">
+                <div class="editorial-image reveal">
+                    <img src="images/ombre-gold.jpg" alt="Bespoke embroidery">
+                    <div class="pin">A piece in progress</div>
+                </div>
+                <div class="editorial-text reveal delay-1">
+                    <span class="number">— what bespoke means here</span>
+                    <h3>Not a service. A <span class="italic">collaboration.</span></h3>
+                    <p>Bespoke at Trendz is not a checkbox at the end of a sale. It is a six to twelve week conversation between you, our head designer, and a small workshop of karigars in Lahore who have been embroidering for thirty years.</p>
+                    <p>You bring a color, an old family photograph, a song lyric, a feeling. We bring the silk, the thread, the silhouette, and the time. Together we make one piece that has never existed before and will never exist again.</p>
+                    <a href="https://wa.me/16464097127?text=Hi%20Trendz,%20I%27d%20like%20to%20start%20a%20bespoke%20commission." class="btn btn-primary" target="_blank" rel="noopener">
+                        Begin Your Commission
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-ink">
+        <div class="container">
+            <div class="section-head center">
+                <span class="eyebrow center" style="color: var(--gold);">No. 02 · The Process</span>
+                <h2>Four steps from <span class="italic">idea</span> to wardrobe</h2>
+                <p>The same path for a single piece or a whole trousseau. Honest at every stage, with no hidden costs and no surprise timelines.</p>
+            </div>
+        </div>
+        <div class="process-grid">
+            <div class="process-step reveal">
+                <div class="process-num">01</div>
+                <h4>The Consultation</h4>
+                <p>Ninety minutes with our head designer. We talk about the event, your taste, your family, the photos saved on your phone. We pour chai.</p>
+            </div>
+            <div class="process-step reveal delay-1">
+                <div class="process-num">02</div>
+                <h4>The Sketch</h4>
+                <p>Within ten days you receive two to three illustrated proposals with silk swatches and embroidery samples. You pick, refine, approve.</p>
+            </div>
+            <div class="process-step reveal delay-2">
+                <div class="process-num">03</div>
+                <h4>The Craft</h4>
+                <p>Four to ten weeks in Lahore. We send you weekly photos so you watch your piece take shape. Every motif set by hand, no machines.</p>
+            </div>
+            <div class="process-step reveal delay-3">
+                <div class="process-num">04</div>
+                <h4>The Fitting</h4>
+                <p>Two to three fittings in our Queens atelier. Every dart adjusted to the way you actually breathe and dance. Then you take it home.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-bone">
+        <div class="container">
+            <div class="section-head center">
+                <span class="eyebrow center">No. 03 · Past Commissions</span>
+                <h2>A few we have made <span class="italic">recently</span></h2>
+                <p>Each piece below was made for one woman. We can never make the same one twice, but they may spark your own.</p>
+            </div>
+            <div class="masonry">
+                <div class="masonry-item reveal">
+                    <img src="images/bridal-gold.jpg" alt="Bespoke bridal" loading="lazy">
+                    <div class="masonry-caption"><strong>The Lahore Bride</strong><span>Gold zardozi · 9 weeks</span></div>
+                </div>
+                <div class="masonry-item reveal delay-1">
+                    <img src="images/royal-blue.jpg" alt="Bespoke party" loading="lazy">
+                    <div class="masonry-caption"><strong>The Reception Gown</strong><span>Royal blue silk · 7 weeks</span></div>
+                </div>
+                <div class="masonry-item reveal delay-2">
+                    <img src="images/burgundy-velvet.jpg" alt="Bespoke heirloom" loading="lazy">
+                    <div class="masonry-caption"><strong>The Heirloom</strong><span>Burgundy velvet · 10 weeks</span></div>
+                </div>
+                <div class="masonry-item reveal">
+                    <img src="images/pink-embroidered.jpg" alt="Bespoke lehenga" loading="lazy">
+                    <div class="masonry-caption"><strong>The Mehndi Lehenga</strong><span>Hand embroidered · 8 weeks</span></div>
+                </div>
+                <div class="masonry-item reveal delay-1">
+                    <img src="images/navy-gold.jpg" alt="Bespoke couture" loading="lazy">
+                    <div class="masonry-caption"><strong>Mother of the Bride</strong><span>Navy and gold · 6 weeks</span></div>
+                </div>
+                <div class="masonry-item reveal delay-2">
+                    <img src="images/teal-orange.jpg" alt="Bespoke sangeet" loading="lazy">
+                    <div class="masonry-caption"><strong>The Sangeet Suit</strong><span>Teal silk and zardozi · 7 weeks</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-paper">
+        <div class="container-narrow">
+            <div class="section-head center">
+                <span class="eyebrow center">No. 04 · Start the Conversation</span>
+                <h2>Tell us about your <span class="italic">piece</span></h2>
+                <p>Fill the form below or message us on WhatsApp. We respond within one business day, often sooner.</p>
+            </div>
+            <div class="contact-form reveal">
+                <div class="form-row-split">
+                    <div class="form-row">
+                        <label>Your Name</label>
+                        <input type="text" id="bspName" placeholder="First and last">
+                    </div>
+                    <div class="form-row">
+                        <label>Phone or WhatsApp</label>
+                        <input type="tel" id="bspPhone" placeholder="+1 ...">
+                    </div>
+                </div>
+                <div class="form-row-split">
+                    <div class="form-row">
+                        <label>Email</label>
+                        <input type="email" id="bspEmail" placeholder="you@email.com">
+                    </div>
+                    <div class="form-row">
+                        <label>Occasion</label>
+                        <select id="bspOcc">
+                            <option>Bridal · Nikkah</option>
+                            <option>Bridal · Walima</option>
+                            <option>Mehndi or Mayoun</option>
+                            <option>Reception</option>
+                            <option>Mother of the Bride</option>
+                            <option>Eid or Festive</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row-split">
+                    <div class="form-row">
+                        <label>Event Date</label>
+                        <input type="date" id="bspDate">
+                    </div>
+                    <div class="form-row">
+                        <label>Budget Range</label>
+                        <select id="bspBudget">
+                            <option>Under $1,500</option>
+                            <option>$1,500 to $3,000</option>
+                            <option>$3,000 to $5,000</option>
+                            <option>$5,000 to $8,000</option>
+                            <option>$8,000 and above</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>Tell us your vision</label>
+                    <textarea id="bspMsg" rows="4" placeholder="Colors you love, silhouettes that flatter you, references that have caught your eye…"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="sendBespoke()" style="width: 100%; justify-content: center;">
+                    Send to Trendz Atelier
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+                <p style="text-align: center; color: var(--text-soft); font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase; margin-top: 1.2rem;">YOUR MESSAGE OPENS WHATSAPP · NOTHING IS STORED ON OUR SERVERS</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-bone">
+        <div class="container">
+            <div class="section-head center">
+                <span class="eyebrow center">No. 05 · The Honest Questions</span>
+                <h2>Bespoke <span class="italic">FAQ</span></h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-q">What does a bespoke piece cost?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Most bespoke commissions land between $1,800 and $7,500. Price depends on silk, embroidery density, and timeline. We give you a full quote after the first consultation, and we will never adjust it without speaking to you first.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">How long does a bespoke piece take?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Six to twelve weeks from first sketch to final fitting. Simple suits sit at the lower end. Heavily embroidered bridal pieces sit at the higher end. We will not rush craftsmanship for a deadline that does not allow it.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">What is the deposit?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Fifty percent at the time you approve the sketch and choose silks. The balance is due at the final fitting. We accept Zelle, credit card, and bank transfer.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">Can I see the piece before it leaves Lahore?<span class="plus"></span></button>
+                    <div class="faq-a"><p>Yes. We send weekly photos and video updates throughout the craft phase. If something feels off, we adjust before the piece ships.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">What if I do not love the final piece?<span class="plus"></span></button>
+                    <div class="faq-a"><p>It has not happened often, but if it does we will rework details until you do. Color shifts, embroidery additions, silhouette adjustments. We will not deliver a piece you are not in love with.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">Do you ship internationally?<span class="plus"></span></button>
+                    <div class="faq-a"><p>We ship insured to clients across the US and Canada. Fittings can be done in person or by video. For Europe and the UK, message us first so we can plan the logistics together.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="mainFooter"></div>
+    <div id="floatingBtns"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+        buildNav('bespoke');
+
+        function sendBespoke() {
+            const name = (document.getElementById('bspName').value || '').trim();
+            const phone = (document.getElementById('bspPhone').value || '').trim();
+            const email = (document.getElementById('bspEmail').value || '').trim();
+            const occ = document.getElementById('bspOcc').value;
+            const date = document.getElementById('bspDate').value;
+            const budget = document.getElementById('bspBudget').value;
+            const msg = (document.getElementById('bspMsg').value || '').trim();
+
+            if (!name || !msg) {
+                alert('Please share at least your name and a few words about your vision.');
+                return;
+            }
+
+            let txt = `Hi Trendz, I would like to begin a bespoke commission.%0A%0A`;
+            txt += `Name: ${encodeURIComponent(name)}%0A`;
+            if (phone) txt += `Phone: ${encodeURIComponent(phone)}%0A`;
+            if (email) txt += `Email: ${encodeURIComponent(email)}%0A`;
+            txt += `Occasion: ${encodeURIComponent(occ)}%0A`;
+            if (date) txt += `Event date: ${encodeURIComponent(date)}%0A`;
+            txt += `Budget: ${encodeURIComponent(budget)}%0A%0A`;
+            txt += `Vision: ${encodeURIComponent(msg)}`;
+
+            window.open('https://wa.me/16464097127?text=' + txt, '_blank');
+        }
+    </script>
+</body>
+</html>

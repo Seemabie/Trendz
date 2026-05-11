@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal · Trendz Closet | Notes from the Atelier</title>
+    <meta name="description" content="The Trendz Closet journal. Bridal stories, color studies, craft notes, and a slow look at South Asian fashion in the New York diaspora.">
+    <meta name="theme-color" content="#08060A">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .feature-article {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 0;
+            background: linear-gradient(135deg, var(--ink), var(--plum));
+            border: 1px solid var(--line-light);
+            margin-bottom: 5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-deep);
+            transition: border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+        }
+        .feature-article:hover {
+            border-color: var(--line-strong);
+            box-shadow: var(--shadow-deep), 0 0 60px var(--gold-glow);
+        }
+        .feature-article-image {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+        }
+        .feature-article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s var(--ease);
+            filter: brightness(0.85) saturate(1.05);
+        }
+        .feature-article:hover .feature-article-image img { transform: scale(1.06); filter: brightness(0.95); }
+        .feature-article-text {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .feature-article .tag {
+            color: var(--gold);
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+            font-weight: 500;
+        }
+        .feature-article h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            line-height: 1.1;
+            color: var(--gold-pale);
+            margin-bottom: 1.4rem;
+            transition: color 0.4s var(--ease);
+        }
+        .feature-article:hover h2 { color: var(--gold); }
+        .feature-article h2 .italic { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+        .feature-article p {
+            color: var(--text-mid);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .feature-article .meta {
+            color: var(--text-soft);
+            font-size: 0.7rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .feature-article .meta .dot { color: var(--gold); margin: 0 0.6rem; }
+        @media (max-width: 900px) {
+            .feature-article { grid-template-columns: 1fr; }
+            .feature-article-text { padding: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="announce"></div>
+    <div id="mainNav"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Journal</span></div>
+                <h1>The <span class="italic">Journal</span></h1>
+                <p>Slow writing about clothes, craft, and the women who wear them. New entries every few weeks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-paper">
+        <div class="container">
+            <article class="feature-article reveal">
+                <div class="feature-article-image">
+                    <img src="images/bridal-gold.jpg" alt="Bridal trends 2026">
+                </div>
+                <div class="feature-article-text">
+                    <span class="tag">— Featured Story</span>
+                    <div class="meta">BRIDAL <span class="dot">·</span> 8 MIN READ <span class="dot">·</span> APR 28, 2026</div>
+                    <h2>What brides are <span class="italic">actually</span> asking for in 2026.</h2>
+                    <p>The trend reports got it half right. Brides are not returning to maximalism, they are returning to family. Heirloom dupattas, mother's gold, the lehenga the auntie wore in 1994 with the embroidery redone.</p>
+                    <p>We spent the spring talking to forty brides about what they wanted. The answer surprised us, then it did not. Read the full conversation.</p>
+                    <a href="#" class="btn-link">Read the Story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                </div>
+            </article>
+
+            <div class="section-head">
+                <span class="eyebrow">No. 02 · More from the journal</span>
+                <h2>Other <span class="italic">notes</span></h2>
+            </div>
+
+            <div class="journal-grid">
+                <article class="journal-card reveal">
+                    <div class="journal-image">
+                        <img src="images/burgundy-velvet.jpg" alt="Color study burgundy" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">COLOR STUDY</span><span class="dot">·</span><span>APR 14, 2026</span></div>
+                    <h3>The case for burgundy, every <span style="font-family: var(--font-serif); font-style: italic;">season.</span></h3>
+                    <p>It is not just a fall color. We argue burgundy is the most flattering shade in the bridal palette and explain why our brides keep returning to it.</p>
+                </article>
+
+                <article class="journal-card reveal delay-1">
+                    <div class="journal-image">
+                        <img src="images/ombre-gold.jpg" alt="Zardozi craft" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">CRAFT</span><span class="dot">·</span><span>APR 02, 2026</span></div>
+                    <h3>Zardozi, the four-hundred-year-old <span style="font-family: var(--font-serif); font-style: italic;">stitch.</span></h3>
+                    <p>Inside the technique that defines South Asian bridal embroidery. Why every motif is set by hand and what changes when you watch one made in person.</p>
+                </article>
+
+                <article class="journal-card reveal delay-2">
+                    <div class="journal-image">
+                        <img src="images/pink-embroidered.jpg" alt="Mehndi color guide" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">BRIDAL</span><span class="dot">·</span><span>MAR 22, 2026</span></div>
+                    <h3>Mehndi color guide for <span style="font-family: var(--font-serif); font-style: italic;">every</span> skin tone.</h3>
+                    <p>Yellow, dusty rose, sage, mustard. Which shades photograph best in afternoon light and which ones to skip if your event is at sunset.</p>
+                </article>
+
+                <article class="journal-card reveal">
+                    <div class="journal-image">
+                        <img src="images/navy-gold.jpg" alt="Mother of the bride" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">FAMILY</span><span class="dot">·</span><span>MAR 08, 2026</span></div>
+                    <h3>Dressing the mother of the <span style="font-family: var(--font-serif); font-style: italic;">bride.</span></h3>
+                    <p>She does not want to compete with you. She also does not want to disappear. A practical guide to dressing her with grace, in her colors.</p>
+                </article>
+
+                <article class="journal-card reveal delay-1">
+                    <div class="journal-image">
+                        <img src="images/teal-orange.jpg" alt="Eid styling" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">FESTIVE</span><span class="dot">·</span><span>FEB 24, 2026</span></div>
+                    <h3>How to style one suit for three <span style="font-family: var(--font-serif); font-style: italic;">Eids.</span></h3>
+                    <p>One thoughtfully chosen kameez and three different dupattas. We show you how to make a single Eid investment last across the year.</p>
+                </article>
+
+                <article class="journal-card reveal delay-2">
+                    <div class="journal-image">
+                        <img src="images/royal-blue.jpg" alt="Walima planning" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">BRIDAL</span><span class="dot">·</span><span>FEB 10, 2026</span></div>
+                    <h3>What to know before your <span style="font-family: var(--font-serif); font-style: italic;">walima.</span></h3>
+                    <p>Six conversations to have with your stylist before walima night, and the one piece of bridal advice every Trendz bride wishes she had heard earlier.</p>
+                </article>
+
+                <article class="journal-card reveal">
+                    <div class="journal-image">
+                        <img src="images/yellow-maroon.jpg" alt="Mayoun traditions" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">TRADITION</span><span class="dot">·</span><span>JAN 28, 2026</span></div>
+                    <h3>The mayoun, and why <span style="font-family: var(--font-serif); font-style: italic;">yellow</span> still matters.</h3>
+                    <p>A short history of the haldi tradition, what it means in the Pakistani and Indian context, and why we still build entire mayoun looks around the color of turmeric.</p>
+                </article>
+
+                <article class="journal-card reveal delay-1">
+                    <div class="journal-image">
+                        <img src="images/grey-pink-floral.jpg" alt="Diaspora fashion" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">CULTURE</span><span class="dot">·</span><span>JAN 14, 2026</span></div>
+                    <h3>Dressing desi in a city <span style="font-family: var(--font-serif); font-style: italic;">like</span> New York.</h3>
+                    <p>Notes on wearing South Asian fashion as everyday wear, not costume. From subway commutes to gallery openings to Sunday lunch with the in-laws.</p>
+                </article>
+
+                <article class="journal-card reveal delay-2">
+                    <div class="journal-image">
+                        <img src="images/turquoise-silver.jpg" alt="Trousseau planning" loading="lazy">
+                    </div>
+                    <div class="journal-meta"><span class="cat">PLANNING</span><span class="dot">·</span><span>DEC 30, 2025</span></div>
+                    <h3>Building a <span style="font-family: var(--font-serif); font-style: italic;">trousseau</span> that lasts.</h3>
+                    <p>How to plan a bridal wardrobe of five to twelve pieces so each event has its own moment, and nothing is worn once and forgotten in a closet.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-inner reveal">
+            <span class="eyebrow center" style="color: var(--gold); margin-bottom: 1.2rem; display: inline-block;">Letters from the atelier</span>
+            <h2>Get the journal in your <span class="italic">inbox.</span></h2>
+            <p>One thoughtful letter every other week. Bridal advice, color notes, atelier stories, and the occasional private invitation. No spam, ever.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you. Please confirm by messaging us on WhatsApp for now.');">
+                <input type="email" placeholder="YOUR EMAIL" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p class="newsletter-disclaimer">UNSUBSCRIBE ANYTIME · YOUR EMAIL IS YOURS ALONE</p>
+        </div>
+    </section>
+
+    <div id="mainFooter"></div>
+    <div id="floatingBtns"></div>
+
+    <script src="js/main.js"></script>
+    <script>buildNav('journal');</script>
+</body>
+</html>

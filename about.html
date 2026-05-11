@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About · Trendz Closet | Our Story</title>
+    <meta name="description" content="The story of Trendz Closet. From a Lahore tailoring shop to a Queens, New York atelier dressing brides and families across the diaspora.">
+    <meta name="theme-color" content="#08060A">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--line-light);
+            border-bottom: 1px solid var(--line-light);
+            background: var(--ink);
+        }
+        .value-card {
+            padding: 4.5rem 3rem;
+            border-right: 1px solid var(--line);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.6s var(--ease);
+        }
+        .value-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 90% 70% at 50% 100%, var(--gold-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s var(--ease);
+            pointer-events: none;
+        }
+        .value-card:hover { background: var(--plum); }
+        .value-card:hover::before { opacity: 0.85; }
+        .value-card:last-child { border-right: none; }
+        .value-card > * { position: relative; }
+        .value-card .num {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--gold);
+            font-size: 1.65rem;
+            margin-bottom: 1.4rem;
+        }
+        .value-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.65rem;
+            color: var(--gold-pale);
+            margin-bottom: 1rem;
+        }
+        .value-card h3 .italic {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--gold);
+        }
+        .value-card p {
+            color: var(--text-mid);
+            line-height: 1.75;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 900px) {
+            .values-grid { grid-template-columns: 1fr; }
+            .value-card { border-right: none; border-bottom: 1px solid var(--line); }
+            .value-card:last-child { border-bottom: none; }
+        }
+        @media (max-width: 700px) {
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 100% !important; margin-left: 0 !important; padding-left: 50px !important; padding-right: 0 !important; text-align: left !important; }
+            .timeline-item::before { left: 12px !important; right: auto !important; }
+        }
+    </style>
+</head>
+<body>
+    <div id="announce"></div>
+    <div id="mainNav"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-inner">
+                <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>About</span></div>
+                <h1>Our <span class="italic">story</span></h1>
+                <p>A family. A workshop in Lahore. A storefront in Queens. And the brides who carried us across an ocean.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-paper">
+        <div class="container">
+            <div class="editorial-split">
+                <div class="editorial-image reveal">
+                    <img src="images/burgundy-velvet.jpg" alt="Heritage embroidery">
+                    <div class="pin">Est. with care</div>
+                </div>
+                <div class="editorial-text reveal delay-1">
+                    <span class="number">— how trendz began</span>
+                    <h3>A tailoring shop, a <span class="italic">grandmother,</span> and a hundred-year-old box of thread.</h3>
+                    <p>Trendz Closet started as most family businesses do, with a grandmother who refused to let craft die. Her tailoring shop in Lahore dressed three generations of brides before her granddaughter, the woman who runs Trendz today, decided to bring it to New York.</p>
+                    <p>We opened our Queens atelier in 2019. The grandmother is still in Lahore, still walking the workshop floor, still scolding the karigars when a single stitch is out of place. The thread she uses for our gold zardozi was milled by the same family for over fifty years.</p>
+                    <p>This is not a brand built in a marketing meeting. It is a family kitchen with a different roof.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-ink">
+        <div class="container">
+            <div class="section-head center">
+                <span class="eyebrow center" style="color: var(--gold);">No. 02 · What We Believe</span>
+                <h2>Three things <span class="italic">we do not</span> compromise on</h2>
+            </div>
+        </div>
+        <div class="values-grid">
+            <div class="value-card reveal">
+                <div class="num">i.</div>
+                <h3>Hand, not <span class="italic">machine.</span></h3>
+                <p>Every motif is set by a human being. We do not use embroidery machines, ever. If a piece takes longer because of that, so be it. The difference is visible to anyone who looks closely.</p>
+            </div>
+            <div class="value-card reveal delay-1">
+                <div class="num">ii.</div>
+                <h3>Honest <span class="italic">prices.</span></h3>
+                <p>We quote you once. The number we say is the number you pay. No surprise alteration fees, no inflated rush charges, no markup for being a bride. Our pricing is the same for everyone.</p>
+            </div>
+            <div class="value-card reveal delay-2">
+                <div class="num">iii.</div>
+                <h3>Fair <span class="italic">wages.</span></h3>
+                <p>Our karigars are paid above market, year round, with a small share of every commission. When you commission a Trendz piece, you are supporting fifteen families in Lahore. We are proud of that.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-paper">
+        <div class="container">
+            <div class="section-head center">
+                <span class="eyebrow center">No. 03 · A Timeline</span>
+                <h2>The <span class="italic">milestones</span></h2>
+                <p>Six years of building, slowly and on purpose.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2019</div>
+                    <h4>The first storefront</h4>
+                    <p>We open a small studio on 118th Avenue in Jamaica, Queens. Six dresses on the rack, one sewing machine, one part-time tailor. The first bride walks in within forty-eight hours.</p>
+                </div>
+                <div class="timeline-item reveal delay-1">
+                    <div class="timeline-year">2020</div>
+                    <h4>The pandemic year</h4>
+                    <p>We close the storefront for three months and pivot to video consultations. Brides postpone weddings but not their dresses. We deliver eighteen bridal gowns by FedEx that year, every fitting by Zoom.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2021</div>
+                    <h4>The Lahore workshop</h4>
+                    <p>We bring on a dedicated workshop of nine karigars in Lahore. No more freelance hopping between embroiderers. One team, one standard, year-round salaries.</p>
+                </div>
+                <div class="timeline-item reveal delay-1">
+                    <div class="timeline-year">2022</div>
+                    <h4>The bridal atelier</h4>
+                    <p>We expand the Queens space and dedicate one room to bridal consultations only. Chai, sketchbooks, silk swatches in a hundred shades. Bridal becomes half our business.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2024</div>
+                    <h4>First five hundred brides</h4>
+                    <p>We dress our five hundredth bride. We send each one a hand-pressed silk thread bookmark on their first anniversary. Many come back for their sister's wedding.</p>
+                </div>
+                <div class="timeline-item reveal delay-1">
+                    <div class="timeline-year">2026</div>
+                    <h4>Today</h4>
+                    <p>Fifteen karigars in Lahore. Five seamstresses in Queens. One head designer who still answers every bridal WhatsApp herself. And you, reading this.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-bone">
+        <div class="container">
+            <div class="editorial-split reverse">
+                <div class="editorial-image reveal">
+                    <img src="images/navy-gold.jpg" alt="Atelier detail">
+                    <div class="pin">In the Queens studio</div>
+                </div>
+                <div class="editorial-text reveal delay-1">
+                    <span class="number">— the people behind the pieces</span>
+                    <h3>You will meet <span class="italic">every</span> hand that touches your dress.</h3>
+                    <p>When you come into the Queens atelier you meet the designer. When you commission bespoke you meet the head karigar by video. When your dress is being fitted you meet the seamstress holding the pins. We do not hide our team behind a brand.</p>
+                    <p>If you would like to walk through how we work, the best way is to come visit. Chai is always on. Appointments are not required but welcome.</p>
+                    <a href="contact.html" class="btn btn-primary">
+                        Visit the Atelier
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-strip">
+        <div class="cta-strip-inner reveal">
+            <span class="eyebrow center" style="color: var(--gold); margin-bottom: 1.2rem; display: inline-block;">Become Part of the Story</span>
+            <h2>Your wedding. Your <span class="italic">closet.</span> Our craft.</h2>
+            <p>Whether you need a single party piece or a full bridal trousseau, the door is open. Walk in, message us, or book a video call. We will meet you where you are.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/16464097127" class="btn btn-gold" target="_blank" rel="noopener">
+                    Say Hello
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <a href="collections.html" class="btn btn-outline-light">Browse Collections</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="mainFooter"></div>
+    <div id="floatingBtns"></div>
+
+    <script src="js/main.js"></script>
+    <script>buildNav('about');</script>
+</body>
+</html>
